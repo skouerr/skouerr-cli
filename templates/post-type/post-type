@@ -1,0 +1,49 @@
+<?php
+
+add_action('init', function () {
+    register_post_type(
+        '%SK_PT_NAME%',
+        [
+            'labels' => [
+                'name' => __('%SK_PT_LABEL%s', '%SK_PT_DOMAIN%'),
+                'singular_name' => __('%SK_PT_LABEL%', '%SK_PT_DOMAIN%'),
+                'all_items' => __('All %SK_PT_LABEL%s', '%SK_PT_DOMAIN%'),
+                'archives' => __('%SK_PT_LABEL% Archives', '%SK_PT_DOMAIN%'),
+                'attributes' => __('%SK_PT_LABEL% Attributes', '%SK_PT_DOMAIN%'),
+                'insert_into_item' => __('Insert into %SK_PT_LABEL%', '%SK_PT_DOMAIN%'),
+                'uploaded_to_this_item' => __('Uploaded to this %SK_PT_LABEL%', '%SK_PT_DOMAIN%'),
+                'featured_image' => _x('Featured Image', '%SK_PT_NAME%', '%SK_PT_DOMAIN%'),
+                'set_featured_image' => _x('Set featured image', '%SK_PT_NAME%', '%SK_PT_DOMAIN%'),
+                'remove_featured_image' => _x('Remove featured image', '%SK_PT_NAME%', '%SK_PT_DOMAIN%'),
+                'use_featured_image' => _x('Use as featured image', '%SK_PT_NAME%', '%SK_PT_DOMAIN%'),
+                'filter_items_list' => __('Filter %SK_PT_LABEL%s list', '%SK_PT_DOMAIN%'),
+                'items_list_navigation' => __('%SK_PT_LABEL%s list navigation', '%SK_PT_DOMAIN%'),
+                'items_list' => __('%SK_PT_LABEL%s list', '%SK_PT_DOMAIN%'),
+                'new_item' => __('New %SK_PT_LABEL%', '%SK_PT_DOMAIN%'),
+                'add_new' => __('Add New', '%SK_PT_DOMAIN%'),
+                'add_new_item' => __('Add New %SK_PT_LABEL%', '%SK_PT_DOMAIN%'),
+                'edit_item' => __('Edit %SK_PT_LABEL%', '%SK_PT_DOMAIN%'),
+                'view_item' => __('View %SK_PT_LABEL%', '%SK_PT_DOMAIN%'),
+                'view_items' => __('View %SK_PT_LABEL%s', '%SK_PT_DOMAIN%'),
+                'search_items' => __('Search %SK_PT_LABEL%s', '%SK_PT_DOMAIN%'),
+                'not_found' => __('No %SK_PT_LABEL%s found', '%SK_PT_DOMAIN%'),
+                'not_found_in_trash' => __('No %SK_PT_LABEL%s found in trash', '%SK_PT_DOMAIN%'),
+                'parent_item_colon' => __('Parent %SK_PT_LABEL%:', '%SK_PT_DOMAIN%'),
+                'menu_name' => __('%SK_PT_LABEL%s', '%SK_PT_DOMAIN%'),
+            ],
+            'public' => true,
+            'hierarchical' => false,
+            'show_ui' => true,
+            'show_in_nav_menus' => true,
+            'supports' => ['title', 'editor'],
+            'has_archive' => true,
+            'rewrite' => true,
+            'query_var' => true,
+            'menu_position' => null,
+            'menu_icon' => 'dashicons-%SK_PT_ICON%',
+            'show_in_rest' => true,
+            'rest_base' => '%SK_PT_NAME%',
+            'rest_controller_class' => 'WP_REST_Posts_Controller',
+        ]
+    );
+});
