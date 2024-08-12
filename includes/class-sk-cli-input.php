@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2021 R2
+ * Copyright (C) 2024 R2
  * This file is part of the Skouerr CLI project.
  *
  * @package Skouerr_CLI

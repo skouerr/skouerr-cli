@@ -1,6 +1,6 @@
 <?php
 
-class Skouerr_CLI_List_Blocks extends Skouerr_Command
+class Skouerr_CLI_List_Blocks
 {
     public function list_blocks()
     {

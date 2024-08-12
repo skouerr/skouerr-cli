@@ -1,6 +1,6 @@
 <?php
 
-class Skouerr_CLI_Make_Block extends Skouerr_Command
+class Skouerr_CLI_Make_Block
 {
 
     public array $types;

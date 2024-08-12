@@ -8,7 +8,6 @@ if (class_exists('WP_CLI')) {
 
 require __DIR__ . '/includes/class-skouerr-cli-plugin.php';
 require __DIR__ . '/includes/class-skouerr-cli.php';
-require __DIR__ . '/includes/class-sk-cli-command.php';
 
 require __DIR__ . '/includes/commands/class-sk-cli-import-block.php';
 require __DIR__ . '/includes/commands/class-sk-cli-list-blocks.php';
