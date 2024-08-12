@@ -36,10 +36,13 @@ class Skouerr_CLI_Make_Block extends Skouerr_Command
             'core',
             'custom',
         );
+    }
 
+    public function make_block()
+    {
         $block_data = $this->form_block();
         $this->create_block($block_data);
-        die();
+        WP_CLI::success(__('Block created successfully'));
     }
 
     public function form_block()
@@ -87,9 +90,10 @@ class Skouerr_CLI_Make_Block extends Skouerr_Command
     {
         if ($block_data['type'] == 'native' && $block_data['template'] == 'php') {
             new Skouerr_Template_Block_Native_Php($block_data);
-        }
-        if ($block_data['type'] == 'acf' && $block_data['template'] == 'php') {
+        } else if ($block_data['type'] == 'acf' && $block_data['template'] == 'php') {
             new Skouerr_Template_Block_Acf_Php($block_data);
+        } else {
+            WP_CLI::error(__('This template is not available'));
         }
     }
 }

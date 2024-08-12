@@ -6,7 +6,7 @@ class Skouerr_CLI
     {
         // Include make block command.
         $skouerr_make_block = new Skouerr_CLI_Make_Block();
-        WP_CLI::add_command('skouerr make:block', $skouerr_make_block);
+        WP_CLI::add_command('skouerr make:block', array($skouerr_make_block, 'make_block'));
 
         // Include list block command
         $skouerr_list_blocks = new Skouerr_CLI_List_Blocks();
