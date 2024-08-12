@@ -1,0 +1,7 @@
+<?php
+// Controllers Scripts 
+
+
+
+// Template File
+include('%SK_BLOCK_NAME%.template.php');

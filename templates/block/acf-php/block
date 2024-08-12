@@ -1,0 +1,28 @@
+{
+  "name": "%SK_BLOCK_SLUG%",
+  "title": "%SK_BLOCK_TITLE%",
+  "description": "Description du bloc %SK_BLOCK_TITLE%",
+  "editorStyle": [
+    "file:dist/style.css"
+  ],
+  "viewStyle": [
+    "file:dist/style.css"
+  ],
+  "script": [
+    "dist/script.js"
+  ],
+  "category": "theme_utils-blocks",
+  "supports": {
+    "jsx": true,
+    "className": true
+  },
+  "icon": "%SK_BLOCK_ICON%",
+  "keywords": [
+    "custom",
+    "block"
+  ],
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "%SK_BLOCK_NAME%.controller.php"
+  }
+}

@@ -16,3 +16,4 @@ require __DIR__ . '/includes/commands/class-sk-cli-make-block.php';
 
 require __DIR__ . '/includes/templates/class-sk-template-block.php';
 require __DIR__ . '/includes/templates/class-sk-template-block-native-php.php';
+require __DIR__ . '/includes/templates/class-sk-template-block-acf-php.php';

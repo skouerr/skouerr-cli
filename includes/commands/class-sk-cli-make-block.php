@@ -85,6 +85,11 @@ class Skouerr_CLI_Make_Block extends Skouerr_Command
 
     public function create_block($block_data)
     {
-        new Skouerr_Template_Block_Native_Php($block_data);
+        if ($block_data['type'] == 'native' && $block_data['template'] == 'php') {
+            new Skouerr_Template_Block_Native_Php($block_data);
+        }
+        if ($block_data['type'] == 'acf' && $block_data['template'] == 'php') {
+            new Skouerr_Template_Block_Acf_Php($block_data);
+        }
     }
 }
