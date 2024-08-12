@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "title": "%SK_BLOCK_TITLE%",
+  "name": "%SK_BLOCK_SLUG%",
+  "category": "theme_utils-blocks",
+  "icon": "%SK_BLOCK_ICON%",
+  "textdomain": "skouerr",
+  "render": "file:./%SK_BLOCK_NAME%.controller.php",
+  "style": "file:./dist/style.css",
+  "viewStyle": "file:./dist/style.css",
+  "editorStyle": "file:./dist/style.css",
+  "viewScript": "file:./dist/script.js",
+  "editorScript": "file:./%SK_BLOCK_NAME%.register.js",
+  "attributes": {},
+  "supports": {}
+}

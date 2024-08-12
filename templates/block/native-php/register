@@ -1,0 +1,26 @@
+/*
+* Register block in WP Admin
+*/
+
+( function ( blocks ) {
+ 
+    const BLOCK_NAME = '%SK_BLOCK_SLUG%';
+
+    const register = blocks.registerBlockType(BLOCK_NAME,{
+        edit: function(){
+            return wp.element.createElement(
+                wp.serverSideRender,
+                {
+                    block: BLOCK_NAME
+                }
+            )
+        },
+        save: function(){
+            return null;
+        }
+    }
+    );
+
+    console.log('%SK_BLOCK_NAME% registered',blocks,register);
+
+} )( window.wp.blocks );

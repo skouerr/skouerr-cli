@@ -1,0 +1,5 @@
+<section class="block block-%SK_BLOCK_NAME%">
+    <div class="container">
+        <h1>%SK_BLOCK_TITLE%</h1>
+    </div>
+</section>
