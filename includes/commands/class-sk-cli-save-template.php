@@ -8,6 +8,7 @@ class Skouerr_CLI_Save_Template
     {
         $template = $this->select_template();
         $this->save_locale_template($template);
+        $this->delete_in_database($template);
         WP_CLI::success('Template ' . $template->post_title . ' saved');
     }
 
@@ -41,5 +42,10 @@ class Skouerr_CLI_Save_Template
         $name = $template->post_name . '.html';
         $content = $template->post_content;
         file_put_contents(get_template_directory() . '/templates/' . $name, $content);
+    }
+
+    public function delete_in_database($template)
+    {
+        wp_delete_post($template->ID, true);
     }
 }

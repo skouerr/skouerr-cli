@@ -45,6 +45,10 @@ class Skouerr_CLI
 
         $skouerr_cli_make_template = new Skouerr_CLI_Make_Template();
         $this->register_command('make:template', array($skouerr_cli_make_template, 'make_template'), __('Make a template'), __('Create a new template in the theme'));
+
+
+        $skouerr_cli_save_pattern = new Skouerr_CLI_Save_Pattern();
+        $this->register_command('save:pattern', array($skouerr_cli_save_pattern, 'save_pattern'), __('Save a pattern'), __('Save a pattern in the theme'));
     }
 
     /**

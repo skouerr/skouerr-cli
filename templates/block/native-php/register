@@ -1,15 +1,15 @@
 /*
 * Register block in WP Admin
 */
-
-( function ( blocks ) {
- 
+wp.domReady( function() {
+    const { registerBlockType } = wp.blocks;
+    const { createElement } = wp.element;
+    const { serverSideRender } = wp;
     const BLOCK_NAME = '%SK_BLOCK_SLUG%';
-
-    const register = blocks.registerBlockType(BLOCK_NAME,{
+    registerBlockType(BLOCK_NAME,{
         edit: function(){
-            return wp.element.createElement(
-                wp.serverSideRender,
+            return createElement(
+                serverSideRender,
                 {
                     block: BLOCK_NAME
                 }
@@ -20,7 +20,4 @@
         }
     }
     );
-
-    console.log('%SK_BLOCK_NAME% registered',blocks,register);
-
-} )( window.wp.blocks );
+} );
