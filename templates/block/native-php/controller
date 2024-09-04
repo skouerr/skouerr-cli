@@ -1,6 +1,21 @@
 <?php
+/* 
+* Block Name : %SK_BLOCK_NAME%
+*/
 
-// Functions file for this block
+/**
+ * Loading Skouerr Block
+ */
+$skouerr_block = new Skouerr_Block(__DIR__);
+
+/**
+ * Setters and Getters on Skouerr Block
+ * 
+ * $skouerr_block->set_data('key', 'value');
+ */
 
 
-include('%SK_BLOCK_NAME%.template.php');
+/**
+ * Render Skouerr Block
+ */
+$skouerr_block->render('php');

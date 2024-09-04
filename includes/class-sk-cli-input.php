@@ -30,13 +30,21 @@ class SK_CLI_Input extends WP_CLI
      * @param ConsoleOutput|null $output Optional ConsoleOutput instance.
      * @return string The answer to the question.
      */
-    public static function ask(string $name, ?ArgvInput $input = null, ?ConsoleOutput $output = null): string
+    public static function ask(string $name, string $default = null, array $autocomplete = array()): string
     {
-        $input = $input ?? new ArgvInput();
-        $output = $output ?? new ConsoleOutput();
+        $input = new ArgvInput();
+        $output = new ConsoleOutput();
         $helper = new Symfony\Component\Console\Helper\QuestionHelper();
 
-        $question = new Question($name . ' : ');
+        if ($default !== null) {
+            $question = new Question($name . ' [' . $default . '] : ', $default);
+        } else {
+            $question = new Question($name . ' : ');
+        }
+
+        if (is_array($autocomplete) && !empty($autocomplete)) {
+            $question->setAutocompleterValues($autocomplete);
+        }
 
         $value = $helper->ask($input, $output, $question);
         return $value;

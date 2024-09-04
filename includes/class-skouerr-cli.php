@@ -27,6 +27,8 @@ class Skouerr_CLI
 
         $this->register_command('list', array($this, 'list_command'), __('List of commands'), _('Display the commands used by Skouerr cli'));
 
+        $skouerr_cli_make_theme = new Skouerr_CLI_Make_Theme();
+        $this->register_command('make:theme', array($skouerr_cli_make_theme, 'make_theme'), __('Make a theme'), __('Create a new theme in themes directory'));
 
         $skouerr_cli_make_block = new Skouerr_CLI_Make_Block();
         $this->register_command('make:block', array($skouerr_cli_make_block, 'make_block'), __('Make a block'), __('Create a new block in the theme'));
@@ -45,7 +47,6 @@ class Skouerr_CLI
 
         $skouerr_cli_make_template = new Skouerr_CLI_Make_Template();
         $this->register_command('make:template', array($skouerr_cli_make_template, 'make_template'), __('Make a template'), __('Create a new template in the theme'));
-
 
         $skouerr_cli_save_pattern = new Skouerr_CLI_Save_Pattern();
         $this->register_command('save:pattern', array($skouerr_cli_save_pattern, 'save_pattern'), __('Save a pattern'), __('Save a pattern in the theme'));
