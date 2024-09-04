@@ -31,4 +31,5 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'loader.php';
 // ======================================================================
 // = All plugin initialization is done in Skouerr_CLI __constructor 
 // ======================================================================
+
 $sk_cli = new Skouerr_CLI_Plugin();

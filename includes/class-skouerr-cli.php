@@ -50,6 +50,10 @@ class Skouerr_CLI
 
         $skouerr_cli_save_pattern = new Skouerr_CLI_Save_Pattern();
         $this->register_command('save:pattern', array($skouerr_cli_save_pattern, 'save_pattern'), __('Save a pattern'), __('Save a pattern in the theme'));
+
+
+        $skouerr_cli_make_docs = new Skouerr_CLI_Make_Docs();
+        $this->register_command('make:docs', array($skouerr_cli_make_docs, 'make_docs'), __('Make docs'), __('Generate the documentation of the theme'));
     }
 
     /**
