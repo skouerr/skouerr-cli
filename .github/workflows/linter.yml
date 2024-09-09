@@ -1,0 +1,37 @@
+name: Linter
+
+on:
+  push:
+    branches:
+      - "**"
+
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  lint:
+    name: Lint the code with PHPCS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          composer update
+          composer install
+
+      - name: Run linter
+        run: ./vendor/bin/phpcs --standard=phpcs.xml *.php includes/* -d -memory=900M
+
+      - name: Check linter output
+        run: |
+          if [ $? -eq 0 ]; then
+              echo "Linter passed"
+          else
+              echo "Linter failed"
+              exit 1
+          fi
