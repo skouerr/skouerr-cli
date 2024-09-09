@@ -5,6 +5,7 @@ use Symfony\Component\Finder\Finder;
 class Skouerr_Template_Block
 {
 
+
     // Public properties that hold information about the block
     public string $title;       // The title of the block
     public string $name;        // The internal name (identifier) of the block
