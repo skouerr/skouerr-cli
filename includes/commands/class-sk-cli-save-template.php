@@ -1,9 +1,26 @@
 <?php
 
+/**
+ * Skouerr_CLI_Save_Template class manages the saving of a template
+ * from the WordPress database to a file and then deletes the template
+ * from the database. It uses WP-CLI (WordPress Command Line Interface)
+ * for user interaction and file operations.
+ */
 class Skouerr_CLI_Save_Template
 {
+
+    /**
+     * Constructor method for Skouerr_CLI_Save_Template.
+     * Currently, it doesn't perform any operations.
+     */
     public function __construct() {}
 
+    /**
+     * Prompts the user to select a template, saves the selected template
+     * as an HTML file in the theme's templates directory, and deletes the
+     * template from the WordPress database. Outputs a success message
+     * once the template is saved.
+     */
     public function save_template()
     {
         $template = $this->select_template();
@@ -12,6 +29,11 @@ class Skouerr_CLI_Save_Template
         WP_CLI::success('Template ' . $template->post_title . ' saved');
     }
 
+    /**
+     * Retrieves all templates stored in WordPress posts of type 'wp_template'.
+     *
+     * @return array An array of WP_Post objects representing templates.
+     */
     public function get_template_in_posts()
     {
         $templates = get_posts(array(
@@ -22,6 +44,12 @@ class Skouerr_CLI_Save_Template
         return $templates;
     }
 
+    /**
+     * Prompts the user to select a template from the available templates
+     * in the WordPress posts. Returns the selected template as a post object.
+     *
+     * @return WP_Post The selected template post object.
+     */
     public function  select_template()
     {
         $templates = $this->get_template_in_posts();
@@ -37,6 +65,12 @@ class Skouerr_CLI_Save_Template
         return get_post($template_id);
     }
 
+    /**
+     * Saves the template content to an HTML file in the theme's templates directory.
+     * The file name is based on the template's slug.
+     *
+     * @param WP_Post $template The template post object to be saved.
+     */
     public function save_locale_template($template)
     {
         $name = $template->post_name . '.html';
@@ -44,6 +78,11 @@ class Skouerr_CLI_Save_Template
         file_put_contents(get_template_directory() . '/templates/' . $name, $content);
     }
 
+    /**
+     * Deletes the template from the WordPress database.
+     *
+     * @param WP_Post $template The template post object to be deleted.
+     */
     public function delete_in_database($template)
     {
         wp_delete_post($template->ID, true);

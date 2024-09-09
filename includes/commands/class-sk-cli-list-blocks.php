@@ -1,7 +1,17 @@
 <?php
 
+/**
+ * Skouerr_CLI_List_Blocks class handles the listing of blocks using
+ * WP-CLI (WordPress Command Line Interface). It retrieves block data
+ * and displays it in a tabular format.
+ */
 class Skouerr_CLI_List_Blocks
 {
+
+    /**
+     * Lists all blocks by retrieving their data and displaying it
+     * in a table format using WP-CLI.
+     */
     public function list_blocks()
     {
         $blocks = $this->get_blocks();
@@ -19,6 +29,12 @@ class Skouerr_CLI_List_Blocks
         die();
     }
 
+    /**
+     * Retrieves all blocks by loading block data from JSON files.
+     * It requires the Skouerr_Loader class to load and decode block data.
+     *
+     * @return array An array of block objects.
+     */
     public function get_blocks()
     {
         $blocks = array();

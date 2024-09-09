@@ -1,9 +1,25 @@
 <?php
 
+/**
+ * Skouerr_CLI_Make_Theme class handles the creation of a new theme
+ * using WP-CLI (WordPress Command Line Interface). It interacts with
+ * the user to gather theme details, downloads the theme from a remote
+ * source, unzips it, and switches to the new theme.
+ */
 class Skouerr_CLI_Make_Theme
 {
+
+    /**
+     * Constructor method for Skouerr_CLI_Make_Theme.
+     * Currently, it doesn't perform any operations.
+     */
     public function __construct() {}
 
+    /**
+     * Prompts the user for theme details, downloads the theme from a remote source,
+     * unzips the downloaded file, and activates the new theme. Outputs messages
+     * indicating the progress and success or failure of each operation.
+     */
     public function make_theme()
     {
         $title = SK_CLI_Input::ask(__('Enter the title of the theme')) ?? 'Theme';
@@ -29,6 +45,14 @@ class Skouerr_CLI_Make_Theme
         WP_CLI::success(__('Theme created successfully, enjoy!'));
     }
 
+    /**
+     * Downloads a theme from a remote source based on the provided details.
+     *
+     * @param string $title The title of the theme.
+     * @param string $name The name of the theme.
+     * @param string $text_domain The text domain of the theme.
+     * @return string The path to the downloaded ZIP file.
+     */
     public function download_remote_theme($title, $name, $text_domain)
     {
         try {
@@ -55,6 +79,12 @@ class Skouerr_CLI_Make_Theme
         }
     }
 
+    /**
+     * Unzips the downloaded theme file to the specified directory.
+     *
+     * @param string $path The path to the ZIP file.
+     * @param string $name The name of the theme.
+     */
     public function unzip_theme($path, $name)
     {
         $zip = new ZipArchive;

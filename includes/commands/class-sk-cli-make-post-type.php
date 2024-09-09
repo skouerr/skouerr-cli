@@ -1,9 +1,30 @@
 <?php
 
+/**
+ * Skouerr_CLI_Make_Post_Type class handles the creation of a new
+ * custom post type using WP-CLI (WordPress Command Line Interface).
+ * It interacts with the user to gather necessary details and generates
+ * a PHP file for the new post type.
+ */
 class Skouerr_CLI_Make_Post_Type
 {
+
+    /**
+     * Constructor method for Skouerr_CLI_Make_Post_Type.
+     * Currently, it doesn't perform any operations.
+     */
     public function __construct() {}
 
+    /**
+     * Prompts the user for input and creates a new custom post type.
+     * The method performs the following steps:
+     * - Asks the user for the slug, label, domain, and icon for the post type
+     * - Formats the icon and slug to lowercase and modifies them as necessary
+     * - Creates a new directory for the post type and copies a template PHP file
+     * - Replaces placeholders in the copied file with actual user-provided values
+     * - Saves the modified file
+     * - Outputs a success message indicating the post type creation status
+     */
     public function make_post_type()
     {
         //WP_CLI::warning(__('This command is not implemented yet'));

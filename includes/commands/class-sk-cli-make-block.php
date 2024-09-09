@@ -7,6 +7,12 @@ class Skouerr_CLI_Make_Block
     public array $templates;
     public array $prefix;
 
+    /**
+     * Constructor for the Skouerr_CLI_Make_Block class.
+     * Initializes the block types, templates, and prefix arrays.
+     *
+     * @return void
+     */
     public function __construct()
     {
 
@@ -39,6 +45,12 @@ class Skouerr_CLI_Make_Block
         );
     }
 
+    /**
+     * Creates a new block by forming the block data and invoking the create_block method.
+     * Displays a success message upon completion.
+     *
+     * @return void
+     */
     public function make_block()
     {
         $block_data = $this->form_block();
@@ -46,6 +58,21 @@ class Skouerr_CLI_Make_Block
         WP_CLI::success(__('Block created successfully'));
     }
 
+    /**
+     * Forms the block data by prompting the user for input.
+     * It performs the following steps:
+     * - Prompts the user to select the type of block.
+     * - Prompts the user to select the template for the block.
+     * - Prompts the user to enter the name of the block.
+     * - Prompts the user to select the prefix for the block.
+     * - Generates the block slug from the prefix and name.
+     * - Prompts the user to enter the dashicon for the block.
+     * - Displays the entered information for confirmation.
+     * - Prompts the user to confirm the block creation.
+     * - Returns the block data if confirmed, otherwise aborts the process.
+     *
+     * @return array The block data including title, name, type, template, slug, and icon.
+     */
     public function form_block()
     {
         $type = SK_CLI_Input::select(__('Select the type of block'), $this->types);
@@ -89,6 +116,13 @@ class Skouerr_CLI_Make_Block
         return $block_data;
     }
 
+    /**
+     * Creates a new block based on the provided block data.
+     * It instantiates the appropriate block class depending on the block type and template.
+     *
+     * @param array $block_data The data for the block, including type and template.
+     * @return void
+     */
     public function create_block($block_data)
     {
         if ($block_data['type'] == 'native' && $block_data['template'] == 'php') {
@@ -104,6 +138,13 @@ class Skouerr_CLI_Make_Block
         }
     }
 
+    /**
+     * Creates a new block based on the provided block data.
+     * It instantiates the appropriate block class depending on the block type and template.
+     *
+     * @param array $block_data The data for the block, including type and template.
+     * @return void
+     */
     public function get_dashicons_list(): array
     {
 
