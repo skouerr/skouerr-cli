@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Plugin Name:  Skouerr CLI
  * Plugin URI:   https://skouerr.dev
@@ -12,12 +10,12 @@
  * @package Starter_Toolbox
  */
 
-if (! defined('ABSPATH')) {
-    die('Kangaroos cannot jump here');
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
 }
 
 // Plugin path.
-define('SKOUERR_CLI_PATH', __DIR__);
+define( 'SKOUERR_CLI_PATH', __DIR__ );
 
 // Include constants.
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'constants.php';
@@ -29,6 +27,6 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'functions.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'loader.php';
 
 // ======================================================================
-// = All plugin initialization is done in Skouerr_CLI __constructor 
+// = All plugin initialization is done in Skouerr_CLI __constructor
 // ======================================================================
 $sk_cli = new Skouerr_CLI_Plugin();
