@@ -1,24 +1,16 @@
 {
-  "name": "r2/starter-mu-plugin",
+  "name": "skouerr/skouer-cli",
   "description": "Plugin qui contient la boite a outil pour faire fonctionner le starter theme",
   "type": "wordpress-muplugin",
   "license": "GPL-2.0-or-later",
-  "version": "1.2.3",
+  "version": "1.0.0",
   "authors": [
     {
       "name": "Agence R2",
       "email": "web@r2.fr"
     }
   ],
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://r2:packages@ressources.r2.fr",
-      "only": [
-        "r2/*"
-      ]
-    }
-  ],
+  "repositories": [],
   "require": {
     "php": ">=8.0",
     "symfony/console": "^6.4.3",
