@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 2024 R2
  * This file is part of the Skouerr CLI project.
@@ -12,7 +13,10 @@
  * from the database. It uses WP-CLI (WordPress Command Line Interface)
  * for user interaction and file operations.
  */
-class Skouerr_CLI_Save_Pattern {
+class Skouerr_CLI_Save_Pattern
+{
+
+
 
 
 	/**
@@ -27,11 +31,12 @@ class Skouerr_CLI_Save_Pattern {
 	 * pattern from the WordPress database. Outputs a success message
 	 * once the pattern is saved.
 	 */
-	public function save_pattern() {
+	public function save_pattern()
+	{
 		$pattern = $this->select_pattern();
-		$this->save_locale_pattern( $pattern );
-		$this->delete_in_database( $pattern );
-		WP_CLI::success( 'Pattern ' . $pattern->post_title . ' saved' );
+		$this->save_locale_pattern($pattern);
+		$this->delete_in_database($pattern);
+		WP_CLI::success('Pattern ' . $pattern->post_title . ' saved');
 	}
 
 	/**
@@ -40,21 +45,22 @@ class Skouerr_CLI_Save_Pattern {
 	 *
 	 * @return WP_Post The selected pattern post object.
 	 */
-	public function select_pattern() {
+	public function select_pattern()
+	{
 		$patterns = $this->get_patterns_in_posts();
 
 		$patterns_for_select = array();
-		foreach ( $patterns as $pattern ) {
-			$patterns_for_select[ $pattern->ID ] = $pattern->post_title;
+		foreach ($patterns as $pattern) {
+			$patterns_for_select[$pattern->ID] = $pattern->post_title;
 		}
 
-		if ( empty( $patterns_for_select ) ) {
-			WP_CLI::error( 'No patterns in database found' );
+		if (empty($patterns_for_select)) {
+			WP_CLI::error('No patterns in database found');
 		}
-		$pattern_name = SK_CLI_Input::select( 'Select a pattern', $patterns_for_select );
-		$pattern_id = array_search( $pattern_name, $patterns_for_select );
+		$pattern_name = SK_CLI_Input::select('Select a pattern', $patterns_for_select);
+		$pattern_id = array_search($pattern_name, $patterns_for_select);
 
-		return get_post( $pattern_id );
+		return get_post($pattern_id);
 	}
 
 	/**
@@ -62,7 +68,8 @@ class Skouerr_CLI_Save_Pattern {
 	 *
 	 * @return array An array of WP_Post objects representing patterns.
 	 */
-	public function get_patterns_in_posts() {
+	public function get_patterns_in_posts()
+	{
 		$patterns = get_posts(
 			array(
 				'post_type' => 'wp_block',
@@ -79,21 +86,21 @@ class Skouerr_CLI_Save_Pattern {
 	 *
 	 * @param WP_Post $pattern The pattern post object to be saved.
 	 */
-	public function save_locale_pattern( $pattern ) {
+	public function save_locale_pattern($pattern)
+	{
 		$name = $pattern->post_name . '.php';
 		$content = $pattern->post_content;
 
 		ob_start();
 		echo '<?php ' . PHP_EOL;
 		echo '/**' . PHP_EOL;
-		echo '* Title: ' . esc_html( $pattern->post_title ) . PHP_EOL;
-		echo '* Slug: skouerr/' . esc_html( $pattern->post_name ) . PHP_EOL;
+		echo '* Title: ' . esc_html($pattern->post_title) . PHP_EOL;
+		echo '* Slug: skouerr/' . esc_html($pattern->post_name) . PHP_EOL;
 		echo '*/' . PHP_EOL;
 		echo '?>' . PHP_EOL;
-		echo esc_html( $pattern->post_content );
+		echo wp_kses_post($pattern->post_content);
 		$content = ob_get_clean();
-
-		file_put_contents( get_template_directory() . '/patterns/' . $name, $content );
+		file_put_contents(get_template_directory() . '/patterns/' . $name, $content);
 	}
 
 	/**
@@ -101,7 +108,8 @@ class Skouerr_CLI_Save_Pattern {
 	 *
 	 * @param WP_Post $pattern The pattern post object to be deleted.
 	 */
-	public function delete_in_database( $pattern ) {
-		wp_delete_post( $pattern->ID, true );
+	public function delete_in_database($pattern)
+	{
+		wp_delete_post($pattern->ID, true);
 	}
 }

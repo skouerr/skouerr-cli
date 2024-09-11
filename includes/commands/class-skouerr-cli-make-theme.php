@@ -15,6 +15,8 @@
  */
 class Skouerr_CLI_Make_Theme {
 
+
+
 	/**
 	 * Constructor method for Skouerr_CLI_Make_Theme.
 	 * Currently, it doesn't perform any operations.
@@ -51,7 +53,10 @@ class Skouerr_CLI_Make_Theme {
 		$this->install_composer_dependencies( $name );
 		WP_CLI::success( __( 'Composer dependencies installed' ) );
 
-		WP_CLI::success( __( 'Theme created successfully, enjoy!' ) );
+		// Setup with theme command.
+		WP_CLI::runcommand( 'skouer-theme setup' );
+
+		WP_CLI::success( __( 'Theme created successfully ! Good luck !' ) );
 	}
 
 	/**
