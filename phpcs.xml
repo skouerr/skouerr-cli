@@ -40,6 +40,7 @@
 
     <rule ref="Squiz.Commenting.FunctionComment.MissingParamTag">
         <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
+        <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
     </rule>
 
     <rule ref="WordPress.Security.NonceVerification.Missing">

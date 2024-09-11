@@ -15,10 +15,6 @@
  */
 class Skouerr_CLI_Make_Theme {
 
-
-
-
-
 	/**
 	 * Constructor method for Skouerr_CLI_Make_Theme.
 	 * Currently, it doesn't perform any operations.
