@@ -101,7 +101,7 @@ class Skouerr_CLI
             }
 
             $data = self::format_commands_data($cli_name, $commands);
-            $headers = array('Commande name', 'Title', 'Description');
+            $headers = array('Command name', 'Title', 'Description');
 
             WP_CLI::line('List of commands used by the skouerr cli plugin');
             self::output_table($data, $headers);

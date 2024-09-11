@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 2024 R2
  * This file is part of the Skouerr CLI project.
@@ -12,7 +13,8 @@
  * the user to gather theme details, downloads the theme from a remote
  * source, unzips it, and switches to the new theme.
  */
-class Skouerr_CLI_Make_Theme {
+class Skouerr_CLI_Make_Theme
+{
 
 
 	/**
@@ -26,28 +28,29 @@ class Skouerr_CLI_Make_Theme {
 	 * unzips the downloaded file, and activates the new theme. Outputs messages
 	 * indicating the progress and success or failure of each operation.
 	 */
-	public function make_theme() {
-		$title = SK_CLI_Input::ask( __( 'Enter the title of the theme' ) ) ?? 'Theme';
-		$name = SK_CLI_Input::ask( __( 'Enter the name of the theme' ) ) ?? 'theme';
-		$text_domain = SK_CLI_Input::ask( __( 'Enter the text domain of the theme' ) ) ?? 'theme';
+	public function make_theme()
+	{
+		$title = SK_CLI_Input::ask(__('Enter the title of the theme')) ?? 'Theme';
+		$name = SK_CLI_Input::ask(__('Enter the name of the theme')) ?? 'theme';
+		$text_domain = SK_CLI_Input::ask(__('Enter the text domain of the theme')) ?? 'theme';
 
 		try {
-			WP_CLI::log( __( 'Start Downloading theme ...' ) );
-			$zip_path = $this->download_remote_theme( $title, $name, $text_domain );
-			WP_CLI::success( __( 'Theme downloaded' ) );
-		} catch ( Exception $e ) {
-			WP_CLI::error( __( 'Error downloading theme' ) );
+			WP_CLI::log(__('Start Downloading theme ...'));
+			$zip_path = $this->download_remote_theme($title, $name, $text_domain);
+			WP_CLI::success(__('Theme downloaded'));
+		} catch (Exception $e) {
+			WP_CLI::error(__('Error downloading theme'));
 		}
 
-		WP_CLI::log( __( 'Start unzipping theme ...' ) );
-		$this->unzip_theme( $zip_path, $name );
-		WP_CLI::success( __( 'Theme unzipped' ) );
+		WP_CLI::log(__('Start unzipping theme ...'));
+		$this->unzip_theme($zip_path, $name);
+		WP_CLI::success(__('Theme unzipped'));
 
-		WP_CLI::log( __( 'Switching to theme ...' ) );
-		switch_theme( $name );
-		WP_CLI::success( __( 'Theme switched' ) );
+		WP_CLI::log(__('Switching to theme ...'));
+		switch_theme($name);
+		WP_CLI::success(__('Theme switched'));
 
-		WP_CLI::success( __( 'Theme created successfully, enjoy!' ) );
+		WP_CLI::success(__('Theme created successfully, enjoy!'));
 	}
 
 	/**
@@ -58,7 +61,8 @@ class Skouerr_CLI_Make_Theme {
 	 * @param string $text_domain The text domain of the theme.
 	 * @return string The path to the downloaded ZIP file.
 	 */
-	public function download_remote_theme( $title, $name, $text_domain ) {
+	public function download_remote_theme($title, $name, $text_domain)
+	{
 		try {
 			$response = wp_remote_get(
 				SKOUERR_REMOTE_THEME_URL,
@@ -74,15 +78,15 @@ class Skouerr_CLI_Make_Theme {
 				)
 			);
 
-			if ( is_wp_error( $response ) ) {
-				WP_CLI::error( 'Error downloading theme' );
+			if (is_wp_error($response)) {
+				WP_CLI::error('Error downloading theme');
 			}
 
-			$content = wp_remote_retrieve_body( $response );
-			file_put_contents( WP_CONTENT_DIR . '/themes/' . $name . '.zip', $content );
+			$content = wp_remote_retrieve_body($response);
+			file_put_contents(WP_CONTENT_DIR . '/themes/' . $name . '.zip', $content);
 			return WP_CONTENT_DIR . '/themes/' . $name . '.zip';
-		} catch ( Exception $e ) {
-			WP_CLI::error( 'Error downloading theme' );
+		} catch (Exception $e) {
+			WP_CLI::error('Error downloading theme');
 		}
 	}
 
@@ -92,15 +96,16 @@ class Skouerr_CLI_Make_Theme {
 	 * @param string $path The path to the ZIP file.
 	 * @param string $name The name of the theme.
 	 */
-	public function unzip_theme( $path, $name ) {
+	public function unzip_theme($path, $name)
+	{
 		$zip = new ZipArchive();
-		$res = $zip->open( $path );
-		if ( $res === true ) {
-			$zip->extractTo( WP_CONTENT_DIR . '/themes/' . $name );
+		$res = $zip->open($path);
+		if ($res === true) {
+			$zip->extractTo(WP_CONTENT_DIR . '/themes/' . $name);
 			$zip->close();
 		} else {
-			WP_CLI::error( 'Error unzipping theme' );
+			WP_CLI::error('Error unzipping theme');
 		}
-		unlink( $path );
+		unlink($path);
 	}
 }
