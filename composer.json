@@ -1,6 +1,6 @@
 {
-  "name": "skouerr/skouer-cli",
-  "description": "Plugin qui contient la boite a outil pour faire fonctionner le starter theme",
+  "name": "skouerr/skouerr-cli",
+  "description": "CLI for Skouerr",
   "type": "wordpress-muplugin",
   "license": "GPL-2.0-or-later",
   "version": "1.0.0",
