@@ -18,6 +18,7 @@ class Skouerr_CLI_Make_Theme {
 
 
 
+
 	/**
 	 * Constructor method for Skouerr_CLI_Make_Theme.
 	 * Currently, it doesn't perform any operations.
@@ -29,10 +30,25 @@ class Skouerr_CLI_Make_Theme {
 	 * unzips the downloaded file, and activates the new theme. Outputs messages
 	 * indicating the progress and success or failure of each operation.
 	 */
-	public function make_theme() {
-		$title = SK_CLI_Input::ask( __( 'Enter the title of the theme' ) ) ?? 'Theme';
-		$name = SK_CLI_Input::ask( __( 'Enter the name of the theme' ) ) ?? 'theme';
-		$text_domain = SK_CLI_Input::ask( __( 'Enter the text domain of the theme' ) ) ?? 'theme';
+	public function make_theme( $args, $assoc_args ) {
+
+		if ( ! isset( $assoc_args['title'] ) ) {
+			$title = SK_CLI_Input::ask( __( 'Enter the title of the theme' ) ) ?? 'Theme';
+		} else {
+			$title = $assoc_args['title'];
+		}
+
+		if ( ! isset( $assoc_args['name'] ) ) {
+			$name = SK_CLI_Input::ask( __( 'Enter the name of the theme' ) ) ?? 'theme';
+		} else {
+			$name = $assoc_args['name'];
+		}
+
+		if ( ! isset( $assoc_args['text_domain'] ) ) {
+			$text_domain = SK_CLI_Input::ask( __( 'Enter the text domain of the theme' ) ) ?? 'theme';
+		} else {
+			$text_domain = $assoc_args['text_domain'];
+		}
 
 		try {
 			WP_CLI::log( __( 'Start Downloading theme ...' ) );

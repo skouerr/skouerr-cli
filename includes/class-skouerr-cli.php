@@ -13,6 +13,7 @@
 class Skouerr_CLI {
 
 
+
 	private string $cli_name = 'skouerr';
 	private array $commands = array();
 
