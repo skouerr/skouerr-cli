@@ -1,0 +1,17 @@
+name: Update package on packagist
+on:
+  push:
+    branches:
+      - main
+jobs:
+  update:
+    name: Update package on packagist
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update package on packagist
+        uses: mnavarrocarter/packagist-update@v1.0
+        with:
+          username: "marcelguillaume"
+          api_token: ${{ secrets.PACKAGIST_API_TOKEN }}
+          package_name: skouerr/skouerr-cli # No need to be explicit if you have checked out a composer.json
+          domain: "packagist.org" # This is by default, so no need to specify this.
