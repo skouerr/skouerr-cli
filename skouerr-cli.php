@@ -4,7 +4,7 @@
  * Plugin Name:  Skouerr CLI
  * Plugin URI:   https://skouerr.dev
  * Description:  CLI for Skouerr
- * Version:      1.0.0
+ * Version:      1.0.2
  * Author:       R2
  * Author URI:   https://r2.fr
  *
