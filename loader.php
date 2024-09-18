@@ -7,13 +7,16 @@
  * @package Skouerr_CLI
  */
 
-if ( class_exists( 'WP_CLI' ) ) {
+if (class_exists('WP_CLI')) {
 	require __DIR__ . '/includes/class-sk-cli-input.php';
 }
 
 // Include all the files that you want to load in here.
 
-require __DIR__ . '/vendor/autoload.php';
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+	require __DIR__ . '/vendor/autoload.php';
+}
+
 
 require __DIR__ . '/includes/class-skouerr-cli-plugin.php';
 require __DIR__ . '/includes/class-skouerr-cli.php';
