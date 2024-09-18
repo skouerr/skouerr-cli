@@ -1,9 +1,9 @@
 {
   "name": "skouerr/skouerr-cli",
-  "description": "CLI for Skouerr",
+  "description": "A WordPress MU plugin to provide a custom command-line interface, facilitating the management and administration of tasks specific to the Skouerr site.",
   "type": "wordpress-muplugin",
   "license": "GPL-2.0-or-later",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
     {
       "name": "Agence R2",

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 2024 R2
  * This file is part of the Skouerr CLI project.
@@ -22,6 +23,7 @@ require __DIR__ . '/includes/commands/class-skouerr-cli-list-blocks.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-make-theme.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-make-block.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-make-post-type.php';
+require __DIR__ . '/includes/commands/class-skouerr-cli-make-variation.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-make-template.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-save-template.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-save-pattern.php';

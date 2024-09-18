@@ -14,6 +14,7 @@ class Skouerr_CLI {
 
 
 
+
 	private string $cli_name = 'skouerr';
 	private array $commands = array();
 
@@ -40,20 +41,23 @@ class Skouerr_CLI {
 		$skouerr_cli_make_block = new Skouerr_CLI_Make_Block();
 		$this->register_command( 'make:block', array( $skouerr_cli_make_block, 'make_block' ), __( 'Make a block' ), __( 'Create a new block in the theme' ) );
 
+		$skouerr_cli_make_post_type = new Skouerr_CLI_Make_Post_Type();
+		$this->register_command( 'make:post-type', array( $skouerr_cli_make_post_type, 'make_post_type' ), __( 'Make a post type' ), __( 'Create a new post type in the theme' ) );
+
+		$skouerr_cli_make_template = new Skouerr_CLI_Make_Template();
+		$this->register_command( 'make:template', array( $skouerr_cli_make_template, 'make_template' ), __( 'Make a template' ), __( 'Create a new template in the theme' ) );
+
+		$skouerr_cli_make_variation = new Skouerr_CLI_Make_Variation();
+		$this->register_command( 'make:variation', array( $skouerr_cli_make_variation, 'make_variation' ), __( 'Make a variation' ), __( 'Create a new variation in the theme' ) );
+
 		$skouerr_cli_list_blocks = new Skouerr_CLI_List_Blocks();
 		$this->register_command( 'list:blocks', array( $skouerr_cli_list_blocks, 'list_blocks' ), __( 'List blocks' ), __( 'List all blocks in the theme' ) );
 
 		$skouerr_cli_import_block = new Skouerr_CLI_Import_Block();
 		$this->register_command( 'import:block', array( $skouerr_cli_import_block, 'import_block' ), __( 'Import block' ), __( 'Import a block in the theme' ) );
 
-		$skouerr_cli_make_post_type = new Skouerr_CLI_Make_Post_Type();
-		$this->register_command( 'make:post-type', array( $skouerr_cli_make_post_type, 'make_post_type' ), __( 'Make a post type' ), __( 'Create a new post type in the theme' ) );
-
 		$skouerr_cli_save_template = new Skouerr_CLI_Save_Template();
 		$this->register_command( 'save:template', array( $skouerr_cli_save_template, 'save_template' ), __( 'Save a template' ), __( 'Save a template in the theme' ) );
-
-		$skouerr_cli_make_template = new Skouerr_CLI_Make_Template();
-		$this->register_command( 'make:template', array( $skouerr_cli_make_template, 'make_template' ), __( 'Make a template' ), __( 'Create a new template in the theme' ) );
 
 		$skouerr_cli_save_pattern = new Skouerr_CLI_Save_Pattern();
 		$this->register_command( 'save:pattern', array( $skouerr_cli_save_pattern, 'save_pattern' ), __( 'Save a pattern' ), __( 'Save a pattern in the theme' ) );

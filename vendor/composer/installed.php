@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
-        'name' => 'r2/starter-mu-plugin',
-        'pretty_version' => '1.2.3',
-        'version' => '1.2.3.0',
+        'name' => 'skouerr/skouerr-cli',
+        'pretty_version' => '1.0.2',
+        'version' => '1.0.2.0',
         'reference' => null,
         'type' => 'wordpress-muplugin',
         'install_path' => __DIR__ . '/../../',
@@ -52,9 +52,9 @@
                 0 => '1.0|2.0|3.0',
             ),
         ),
-        'r2/starter-mu-plugin' => array(
-            'pretty_version' => '1.2.3',
-            'version' => '1.2.3.0',
+        'skouerr/skouerr-cli' => array(
+            'pretty_version' => '1.0.2',
+            'version' => '1.0.2.0',
             'reference' => null,
             'type' => 'wordpress-muplugin',
             'install_path' => __DIR__ . '/../../',
@@ -62,9 +62,9 @@
             'dev_requirement' => false,
         ),
         'squizlabs/php_codesniffer' => array(
-            'pretty_version' => '3.10.2',
-            'version' => '3.10.2.0',
-            'reference' => '86e5f5dd9a840c46810ebe5ff1885581c42a3017',
+            'pretty_version' => '3.10.3',
+            'version' => '3.10.3.0',
+            'reference' => '62d32998e820bddc40f99f8251958aed187a5c9c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
             'aliases' => array(),

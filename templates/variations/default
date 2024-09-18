@@ -1,0 +1,15 @@
+// Register a new block variation for the %SK_VARIATION_BLOCK% block
+document.addEventListener('DOMContentLoaded', function () {
+  wp.domReady(function () {
+    wp.blocks.registerBlockVariation('%SK_VARIATION_BLOCK%', [{
+        name:'%SK_VARIATION_NAME%',
+        title: '%SK_VARIATION_TITLE%',
+        icon: '%SK_VARIATION_ICON%',
+        attributes: {
+          className: ''
+        },
+        innerBlocks: [
+        ]
+    }])
+  })
+});

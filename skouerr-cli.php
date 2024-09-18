@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:  Skouerr CLI
  * Plugin URI:   https://skouerr.dev
@@ -7,7 +8,7 @@
  * Author:       R2
  * Author URI:   https://r2.fr
  *
- * @package Starter_Toolbox
+ * @package Skouerr_CLI
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
