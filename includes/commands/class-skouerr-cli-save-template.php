@@ -32,7 +32,7 @@ class Skouerr_CLI_Save_Template {
 		$this->save_locale_template( $template );
 		$this->delete_in_database( $template );
 		WP_CLI::success( sprintf( _x('Template %s saved', 'Log of the command `wp skouerr save:template`. %s correspond to the template.', 'skouerr-cli'), $template->post_title) );
-}
+	}
 
 	/**
 	 * Retrieves all templates stored in WordPress posts of type 'wp_template'.
