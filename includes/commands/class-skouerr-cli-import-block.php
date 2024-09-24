@@ -27,6 +27,6 @@ class Skouerr_CLI_Import_Block {
 	 * that the command is not yet implemented.
 	 */
 	public function import_block() {
-		WP_CLI::warning( __( 'This command is not implemented yet' ) );
+		WP_CLI::warning( __( 'This command is not implemented yet', 'skouerr-cli' ) );
 	}
 }

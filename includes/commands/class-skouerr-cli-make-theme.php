@@ -31,31 +31,37 @@ class Skouerr_CLI_Make_Theme {
 	 * indicating the progress and success or failure of each operation.
 	 */
 	public function make_theme() {
-		$title = SK_CLI_Input::ask( __( 'Enter the title of the theme' ) ) ?? 'Theme';
-		$name = SK_CLI_Input::ask( __( 'Enter the name of the theme' ) ) ?? 'theme';
-		$text_domain = SK_CLI_Input::ask( __( 'Enter the text domain of the theme' ) ) ?? 'theme';
+		$title = SK_CLI_Input::ask(
+            _x( 'Enter the title of the theme', 'Input of the command `wp skouerr make:theme`', 'skouerr-cli' ) )
+            ?? _x('Theme', 'Default value for the title of the theme.', 'skouerr-cli');
+		$name = SK_CLI_Input::ask(
+            _x( 'Enter the name of the theme', 'Input of the command `wp skouerr make:theme`', 'skouerr-cli' ) )
+            ?? _x('theme', 'Default value for the name of the theme.', 'skouerr-cli');
+		$text_domain = SK_CLI_Input::ask(
+            _x( 'Enter the text domain of the theme', 'Input of the command `wp skouerr make:theme`', 'skouerr-cli' ) )
+            ?? _x('theme', 'Default value for the text domain of the theme.', 'skouerr-cli');
 
 		try {
-			WP_CLI::log( __( 'Start Downloading theme ...' ) );
+			WP_CLI::log( _x( 'Start Downloading theme ...', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli' ) );
 			$zip_path = $this->download_remote_theme( $title, $name, $text_domain );
-			WP_CLI::success( __( 'Theme downloaded' ) );
+			WP_CLI::success( _x( 'Theme downloaded', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli' ) );
 		} catch ( Exception $e ) {
-			WP_CLI::error( __( 'Error downloading theme' ) );
+			WP_CLI::error( _x( 'Error downloading theme', 'Log message of the command `wp skouerr make:theme`', 'skouerr-cli' ) );
 		}
 
-		WP_CLI::log( __( 'Start unzipping theme ...' ) );
+		WP_CLI::log( _x( 'Start unzipping theme ...', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli' ) );
 		$this->unzip_theme( $zip_path, $name );
-		WP_CLI::success( __( 'Theme unzipped' ) );
+		WP_CLI::success( _x( 'Theme unzipped', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli' ) );
 
-		WP_CLI::log( __( 'Switching to theme ...' ) );
+		WP_CLI::log( _x( 'Switching to theme ...', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli' ) );
 		switch_theme( $name );
-		WP_CLI::success( __( 'Theme switched' ) );
+		WP_CLI::success(  _x( 'Theme switched', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli' ) );
 
-		WP_CLI::log( __( 'Install composer dependencies ...' ) );
+		WP_CLI::log( _x( 'Install composer dependencies ...', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli' ) );
 		$this->install_composer_dependencies( $name );
-		WP_CLI::success( __( 'Composer dependencies installed' ) );
+		WP_CLI::success( _x( 'Composer dependencies installed', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli' ) );
 
-		WP_CLI::success( __( 'Theme created successfully, enjoy!' ) );
+		WP_CLI::success( _x( 'Theme created successfully, enjoy!', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli' ) );
 	}
 
 	/**
@@ -90,7 +96,7 @@ class Skouerr_CLI_Make_Theme {
 			file_put_contents( WP_CONTENT_DIR . '/themes/' . $name . '.zip', $content );
 			return WP_CONTENT_DIR . '/themes/' . $name . '.zip';
 		} catch ( Exception $e ) {
-			WP_CLI::error( 'Error downloading theme' );
+			WP_CLI::error(  _x( 'Error downloading theme', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli'  ) );
 		}
 	}
 
@@ -107,7 +113,7 @@ class Skouerr_CLI_Make_Theme {
 			$zip->extractTo( WP_CONTENT_DIR . '/themes/' . $name );
 			$zip->close();
 		} else {
-			WP_CLI::error( 'Error unzipping theme' );
+			WP_CLI::error( _x( 'Error unzipping theme', 'Log message of the command `wp skouerr make:theme`.', 'skouerr-cli'  ) );
 		}
 		unlink( $path );
 	}

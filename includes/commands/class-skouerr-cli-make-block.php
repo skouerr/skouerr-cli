@@ -27,13 +27,6 @@ class Skouerr_CLI_Make_Block {
 	 */
 	public function __construct() {
 
-		$acf_text = __( 'ACF (needs ACF Pro)' );
-
-		$this->types = array(
-			'native' => 'Native',
-			'acf' => $acf_text,
-		);
-
 		$this->templates = array(
 			'native' => array(
 				// 'react' => 'React',
@@ -65,7 +58,7 @@ class Skouerr_CLI_Make_Block {
 	public function make_block() {
 		$block_data = $this->form_block();
 		$this->create_block( $block_data );
-		WP_CLI::success( __( 'Block created successfully' ) );
+		WP_CLI::success( _x( 'Block created successfully', 'Log for the command `wp skouerr make:block`', 'skouerr-cli' ) );
 	}
 
 	/**
@@ -84,33 +77,42 @@ class Skouerr_CLI_Make_Block {
 	 * @return array The block data including title, name, type, template, slug, and icon.
 	 */
 	public function form_block() {
-		$type = SK_CLI_Input::select( __( 'Select the type of block' ), $this->types );
+		$type = SK_CLI_Input::select(
+			_x( 'Select the type of block', 'Input of the command `wp skouerr make:block`', 'skouerr-cli' ),
+			array(
+				'native' => 'Native',
+				'acf' => _x( 'ACF (needs ACF Pro)', 'Input choice of the command `wp skouerr make:block`', 'skouerr-cli' ),
+			)
+		);
 
 		$templates = $this->templates[ $type ];
-		$template = SK_CLI_Input::select( __( 'Select the template' ), $templates );
+		$template = SK_CLI_Input::select( _x( 'Select the template', 'Input of the command `wp skouerr make:block`', 'skouerr-cli'  ), $templates );
 
-		$title = SK_CLI_Input::ask( __( 'Enter the name of the block' ) );
+		$title = SK_CLI_Input::ask( _x( 'Enter the name of the block', 'Input of the command `wp skouerr make:block`', 'skouerr-cli'  ) );
 		$title = ucwords( $title );
-		$prefix = SK_CLI_Input::select( __( 'Select the prefix' ), $this->prefix );
+		$prefix = SK_CLI_Input::select( _x( 'Select the prefix', 'Input of the command `wp skouerr make:block`', 'skouerr-cli'  ), $this->prefix );
 		$name = strtolower( str_replace( ' ', '-', $title ) );
 		$slug = $prefix . '/' . $name;
 
 		$dashicons = $this->get_dashicons_list();
 
-		$icon = SK_CLI_Input::ask( __( 'Enter the dashicon of the block (https://developer.wordpress.org/resource/dashicons)' ), 'block-default', $dashicons );
+		$icon = SK_CLI_Input::ask( _x( 'Enter the dashicon of the block (https://developer.wordpress.org/resource/dashicons)', 'Input of the command `wp skouerr make:block`', 'skouerr-cli' ), 'block-default', $dashicons );
 		$icon = str_replace( 'dashicons-', '', $icon );
 
-		WP_CLI::line( __( 'Confirm the following information:' ) );
-		WP_CLI::line( __( ' Title: ' ) . $title );
-		WP_CLI::line( __( ' Name: ' ) . $name );
-		WP_CLI::line( __( ' Type: ' ) . $type );
-		WP_CLI::line( __( ' Template: ' ) . $template );
-		WP_CLI::line( __( ' Slug: ' ) . $slug );
-		WP_CLI::line( __( ' Icon: ' ) . $icon );
+		WP_CLI::line( _x( 'Confirm the following information:', 'Log of the command `wp skouerr make:block`', 'skouerr-cli' ) );
+		WP_CLI::line( _x( ' Title: ', 'Log of the command `wp skouerr make:block`', 'skouerr-cli' ) . $title );
+		WP_CLI::line( _x( ' Name: ', 'Log of the command `wp skouerr make:block`', 'skouerr-cli' ) . $name );
+		WP_CLI::line( _x( ' Type: ', 'Log of the command `wp skouerr make:block`', 'skouerr-cli' ) . $type );
+		WP_CLI::line( _x( ' Template: ', 'Log of the command `wp skouerr make:block`', 'skouerr-cli' ) . $template );
+		WP_CLI::line( _x( ' Slug: ', 'Log of the command `wp skouerr make:block`', 'skouerr-cli' ) . $slug );
+		WP_CLI::line( _x( ' Icon: ', 'Log of the command `wp skouerr make:block`', 'skouerr-cli' ) . $icon );
 
-		$confirm = SK_CLI_Input::select( __( 'Do you confirm creation of block ?' ), array( 'yes', 'no' ) );
+		$confirm = SK_CLI_Input::select(
+			_x( 'Do you confirm creation of block ?', 'Input of the command `wp skouerr make:block`', 'skouerr-cli' ),
+			array( __('yes', 'skouerr-cli'), __('no', 'skouerr-cli') )
+		);
 		if ( $confirm == 'no' ) {
-			WP_CLI::line( __( 'Block creation aborted' ) );
+			WP_CLI::line( _x( 'Block creation aborted', 'Log of the command `wp skouerr make:block`', 'skouerr-cli' ) );
 			die();
 		}
 		$block_data = array(
@@ -141,7 +143,7 @@ class Skouerr_CLI_Make_Block {
 		} else if ( $block_data['type'] == 'acf' && $block_data['template'] == 'twig' ) {
 			new Skouerr_Template_Block_Acf_Twig( $block_data );
 		} else {
-			WP_CLI::error( __( 'This template is not available' ) );
+			WP_CLI::error( _x( 'This template is not available', 'Log of the command `wp skouerr make:block`', 'skouerr-cli' ) );
 		}
 	}
 

@@ -27,8 +27,8 @@ class Skouerr_CLI_Make_Template {
 	 * Outputs a success message once the template file is created.
 	 */
 	public function make_template() {
-		$name = SK_CLI_Input::ask( 'Enter the name of the template' );
+		$name = SK_CLI_Input::ask( _x( 'Enter the name of the template', 'Input of the command `wp skouerr make:template`', 'skouerr-cli' ) );
 		file_put_contents( get_template_directory() . '/templates/' . $name . '.html', '' );
-		WP_CLI::success( 'Template created' );
+		WP_CLI::success( _x('Template created', 'Log of the command `wp skouerr make:template`', 'skouerr-cli') );
 	}
 }

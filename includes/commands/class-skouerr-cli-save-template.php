@@ -31,8 +31,8 @@ class Skouerr_CLI_Save_Template {
 		$template = $this->select_template();
 		$this->save_locale_template( $template );
 		$this->delete_in_database( $template );
-		WP_CLI::success( 'Template ' . $template->post_title . ' saved' );
-	}
+		WP_CLI::success( sprintf( _x('Template %s saved', 'Log of the command `wp skouerr save:template`. %s correspond to the template.', 'skouerr-cli'), $template->post_title) );
+}
 
 	/**
 	 * Retrieves all templates stored in WordPress posts of type 'wp_template'.
@@ -58,13 +58,18 @@ class Skouerr_CLI_Save_Template {
 	 */
 	public function select_template() {
 		$templates = $this->get_template_in_posts();
+		$nb_templates = count($templates);
+
+		if ($nb_templates === 0) {
+			WP_CLI::error( _x('No template found', 'Log message for the command `wp skouerr save:template`', 'skouerr-cli') );
+		}
 
 		$templates_for_select = array();
 		foreach ( $templates as $template ) {
 			$templates_for_select[ $template->ID ] = $template->post_title;
 		}
 
-		$template_name = SK_CLI_Input::select( 'Select a template', $templates_for_select );
+		$template_name = SK_CLI_Input::select( _x('Select a template', 'Input of the command `wp skouerr save:template`', 'skouerr-cli'), $templates_for_select );
 		$template_id = array_search( $template_name, $templates_for_select );
 
 		return get_post( $template_id );

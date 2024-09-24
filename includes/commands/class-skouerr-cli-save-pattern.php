@@ -31,7 +31,7 @@ class Skouerr_CLI_Save_Pattern {
 		$pattern = $this->select_pattern();
 		$this->save_locale_pattern( $pattern );
 		$this->delete_in_database( $pattern );
-		WP_CLI::success( 'Pattern ' . $pattern->post_title . ' saved' );
+		WP_CLI::success( sprintf( _x('Pattern %s saved', 'Log of the command `wp skouerr save:pattern`. %s correspond to the pattern name.', 'skouerr-cli'), $pattern->post_title) );
 	}
 
 	/**
@@ -49,9 +49,9 @@ class Skouerr_CLI_Save_Pattern {
 		}
 
 		if ( empty( $patterns_for_select ) ) {
-			WP_CLI::error( 'No patterns in database found' );
+			WP_CLI::error( _x('No patterns in database found', 'Log of the command `wp skouerr save:pattern`', 'skouerr-cli') );
 		}
-		$pattern_name = SK_CLI_Input::select( 'Select a pattern', $patterns_for_select );
+		$pattern_name = SK_CLI_Input::select( _x('Select a pattern', 'Input of the command `wp skouerr save:pattern`.', 'skouerr-cli'), $patterns_for_select );
 		$pattern_id = array_search( $pattern_name, $patterns_for_select );
 
 		return get_post( $pattern_id );

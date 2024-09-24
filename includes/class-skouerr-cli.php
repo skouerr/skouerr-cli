@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright (C) 2024 R2
  * This file is part of the Skouerr CLI project.
@@ -31,31 +30,31 @@ class Skouerr_CLI {
 		$this->register_command('create-theme', array($this, 'create_theme'), 'Créer un thème', 'Créer un thème wordpress depuis le starter theme');
 		*/
 
-		$this->register_command( 'list', array( $this, 'list_command' ), __( 'List of commands' ), __( 'Display the commands used by Skouerr cli' ) );
+		$this->register_command( 'list', array( $this, 'list_command' ), _x( 'List of commands', 'Title of the command `wp skouerr list`', 'skouerr-cli' ), _x( 'Display the commands used by Skouerr cli', 'Description of the `wp skouerr list` command', 'skouerr-cli' ) );
 
 		$skouerr_cli_make_theme = new Skouerr_CLI_Make_Theme();
-		$this->register_command( 'make:theme', array( $skouerr_cli_make_theme, 'make_theme' ), __( 'Make a theme' ), __( 'Create a new theme in themes directory' ) );
+		$this->register_command( 'make:theme', array( $skouerr_cli_make_theme, 'make_theme' ), _x( 'Make a theme', 'Title of the command `wp skouerr make:theme`', 'skouerr-cli' ), _x( 'Create a new theme in themes directory', 'Description for the command `wp skouerr make:theme`', 'skouerr-cli' ) );
 
 		$skouerr_cli_make_block = new Skouerr_CLI_Make_Block();
-		$this->register_command( 'make:block', array( $skouerr_cli_make_block, 'make_block' ), __( 'Make a block' ), __( 'Create a new block in the theme' ) );
+		$this->register_command( 'make:block', array( $skouerr_cli_make_block, 'make_block' ), _x( 'Make a block', 'Title of the command `wp skouerr make:block`', 'skouerr-cli' ), _x( 'Create a new block in the theme', 'Description of the command `wp skouerr make:block`', 'skouerr-cli' ) );
 
 		$skouerr_cli_list_blocks = new Skouerr_CLI_List_Blocks();
-		$this->register_command( 'list:blocks', array( $skouerr_cli_list_blocks, 'list_blocks' ), __( 'List blocks' ), __( 'List all blocks in the theme' ) );
+		$this->register_command( 'list:blocks', array( $skouerr_cli_list_blocks, 'list_blocks' ), _x( 'List blocks', 'Title of the command `wp skouerr list:blocks`', 'skouerr-cli' ), _x( 'List all blocks in the theme', 'Description of the command `wp skouerr list:blocks`', 'skouerr-cli' ) );
 
 		$skouerr_cli_import_block = new Skouerr_CLI_Import_Block();
-		$this->register_command( 'import:block', array( $skouerr_cli_import_block, 'import_block' ), __( 'Import block' ), __( 'Import a block in the theme' ) );
+		$this->register_command( 'import:block', array( $skouerr_cli_import_block, 'import_block' ), _x( 'Import block', 'Title of the command `wp skouerr import:block`', 'skouerr-cli' ), _x( 'Import a block in the theme', 'Description of the command `wp skouerr import:block`', 'skouerr-cli' ) );
 
 		$skouerr_cli_make_post_type = new Skouerr_CLI_Make_Post_Type();
-		$this->register_command( 'make:post-type', array( $skouerr_cli_make_post_type, 'make_post_type' ), __( 'Make a post type' ), __( 'Create a new post type in the theme' ) );
+		$this->register_command( 'make:post-type', array( $skouerr_cli_make_post_type, 'make_post_type' ), _x( 'Make a post type', 'Title of the command `wp skouerr make:post-type`', 'skouerr-cli' ), _x( 'Create a new post type in the theme', 'Desciption of the command `wp skouerr make:post-type`', 'skouerr-cli' ) );
 
 		$skouerr_cli_save_template = new Skouerr_CLI_Save_Template();
-		$this->register_command( 'save:template', array( $skouerr_cli_save_template, 'save_template' ), __( 'Save a template' ), __( 'Save a template in the theme' ) );
+		$this->register_command( 'save:template', array( $skouerr_cli_save_template, 'save_template' ), _x( 'Save a template', 'Title of the command `wp skouerr save:template`', 'skouerr-cli' ), _x( 'Save a template in the theme', 'Description of the command `wp skouerr save:template`', 'skouerr-cli' ) );
 
 		$skouerr_cli_make_template = new Skouerr_CLI_Make_Template();
-		$this->register_command( 'make:template', array( $skouerr_cli_make_template, 'make_template' ), __( 'Make a template' ), __( 'Create a new template in the theme' ) );
+		$this->register_command( 'make:template', array( $skouerr_cli_make_template, 'make_template' ), _x( 'Make a template', 'Title of the command `wp skouerr make:template`', 'skouerr-cli' ), _x( 'Create a new template in the theme', 'Description of the command `wp skouerr make:template`', 'skouerr-cli' ) );
 
 		$skouerr_cli_save_pattern = new Skouerr_CLI_Save_Pattern();
-		$this->register_command( 'save:pattern', array( $skouerr_cli_save_pattern, 'save_pattern' ), __( 'Save a pattern' ), __( 'Save a pattern in the theme' ) );
+		$this->register_command( 'save:pattern', array( $skouerr_cli_save_pattern, 'save_pattern' ), _x( 'Save a pattern', 'Title of the command `wp skouerr save:pattern`', 'skouerr-cli' ), _x( 'Save a pattern in the theme', 'Title of the command `wp skouerr save:pattern`', 'skouerr-cli' ) );
 	}
 
 	/**
@@ -94,16 +93,20 @@ class Skouerr_CLI {
 		try {
 			// Check if $cli_name or $commands is null.
 			if ( null === $cli_name || null === $commands ) {
-				throw new Exception( 'Invalid parameters. $cli_name and $commands cannot be null.' );
+				throw new Exception( __('Invalid parameters. $cli_name and $commands cannot be null.', 'skouerr-cli') );
 			}
 
 			$data = self::format_commands_data( $cli_name, $commands );
-			$headers = array( 'Command name', 'Title', 'Description' );
+			$headers = array(
+                _x('Command name', 'Header of the command `wp skouerr list`', 'skouerr-cli'),
+                _x('Title', 'Header of the command `wp skouerr list`', 'skouerr-cli'),
+                _x('Description', 'Header of the command `wp skouerr list`', 'skouerr-cli')
+            );
 
-			WP_CLI::line( 'List of commands used by the skouerr cli plugin' );
+			WP_CLI::line( _x('List of commands used by the skouerr cli plugin', 'Log of the command `wp skouerr list`', 'skouerr-cli') );
 			self::output_table( $data, $headers );
 		} catch ( Exception $e ) {
-			WP_CLI::error( 'An error occurred while retrieving commands:' . $e->getMessage() );
+			WP_CLI::error( sprintf(_x('An error occurred while retrieving commands: %s', 'Log of the command `wp skouerr list`', 'skouerr-cli'), $e->getMessage() ));
 		}
 	}
 
@@ -123,9 +126,9 @@ class Skouerr_CLI {
 		$data = array();
 		foreach ( $commands as $command ) {
 			$data[] = array(
-				'Command name' => $cli_name . ' ' . $command['name'],
-				'Title' => $command['title'],
-				'Description' => $command['description'],
+                _x('Command name', 'Header of the command `wp skouerr list`', 'skouerr-cli') => $cli_name . ' ' . $command['name'],
+                _x('Title', 'Header of the command `wp skouerr list`', 'skouerr-cli') => $command['title'],
+                _x('Description', 'Header of the command `wp skouerr list`', 'skouerr-cli') => $command['description'],
 			);
 		}
 		return $data;

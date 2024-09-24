@@ -32,10 +32,10 @@ class Skouerr_CLI_Make_Post_Type {
 	 * - Outputs a success message indicating the post type creation status
 	 */
 	public function make_post_type() {
-		$slug = SK_CLI_Input::ask( 'Enter the slug of the post type' );
-		$label = SK_CLI_Input::ask( 'Enter the label of the post type' );
-		$domain = SK_CLI_Input::ask( 'Enter the domain of the post type', 'skouerr' );
-		$icon = SK_CLI_Input::ask( 'Enter the icon of the post type', 'dashicons-admin-post' );
+		$slug = SK_CLI_Input::ask( _x('Enter the slug of the post type', 'Input of the command `wp skouerr make:post-type`', 'skouerr-cli') );
+		$label = SK_CLI_Input::ask( _x('Enter the label of the post type', 'Input of the command `wp skouerr make:post-type`', 'skouerr-cli') );
+		$domain = SK_CLI_Input::ask( _x('Enter the domain of the post type', 'Input of the command `wp skouerr make:post-type`', 'skouerr-cli'), 'skouerr' );
+		$icon = SK_CLI_Input::ask( _x('Enter the icon of the post type', 'Input of the command `wp skouerr make:post-type`', 'skouerr-cli'), 'dashicons-admin-post' );
 
 		$icon = strtolower( $icon );
 		$icon = str_replace( 'dashicons-', '', $icon );
@@ -59,6 +59,6 @@ class Skouerr_CLI_Make_Post_Type {
 		$content = str_replace( '%SK_PT_ICON%', $icon, $content );
 		file_put_contents( $destination, $content );
 
-		WP_CLI::success( 'Post type ' . $slug . ' created' );
+		WP_CLI::success( sprintf( _x( 'Post type %s created', 'Log of the command `wp skouerr make:post-type`', 'skouerr-cli' ), $slug ) );
 	}
 }

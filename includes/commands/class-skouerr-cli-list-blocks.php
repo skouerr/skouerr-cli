@@ -20,14 +20,19 @@ class Skouerr_CLI_List_Blocks {
 	 */
 	public function list_blocks() {
 		$blocks = $this->get_blocks();
-		$headers = array( 'title', 'name', 'category', 'icon' );
+		$headers = array(
+			_x('title', 'Header of the blocs table', 'skouerr-cli'),
+			_x('name', 'Header of the blocs table', 'skouerr-cli'),
+			_x('category', 'Header of the blocs table', 'skouerr-cli'),
+			_x('icon', 'Header of the blocs table', 'skouerr-cli')
+		);
 		$data = array_map(
 			function ( $block ) {
 				return array(
-					'name' => $block->name,
-					'title' => $block->title,
-					'category' => $block->category,
-					'icon' => $block->icon,
+					_x('name', 'Header of the blocs table', 'skouerr-cli') => $block->name,
+					_x('title', 'Header of the blocs table', 'skouerr-cli') => $block->title,
+					_x('category', 'Header of the blocs table', 'skouerr-cli') => $block->category,
+					_x('icon', 'Header of the blocs table', 'skouerr-cli') => $block->icon,
 				);
 			},
 			$blocks
