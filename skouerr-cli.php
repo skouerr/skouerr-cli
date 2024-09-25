@@ -29,4 +29,15 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'loader.php';
 // ======================================================================
 // = All plugin initialization is done in Skouerr_CLI __constructor
 // ======================================================================
-$sk_cli = new Skouerr_CLI_Plugin();
+
+// Load the plugin text domain for translation.
+function skouerr_cli_load_textdomain() {
+	load_plugin_textdomain( 'skouerr-cli', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
+}
+add_action( 'plugins_loaded', 'skouerr_cli_load_textdomain' );
+
+// Load plugin after the theme to make sure all translations are loaded.
+function skouerr_cli_init_after_theme() {
+	$sk_cli = new Skouerr_CLI_Plugin();
+}
+add_action( 'after_setup_theme', 'skouerr_cli_init_after_theme', 20 );
