@@ -1,0 +1,445 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Skouerr CLI\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-24 13:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.11; wp-6.6.2\n"
+"X-Domain: skouerr-cli"
+
+#. Description of the plugin
+msgid "CLI for Skouerr (Good version)"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:39
+msgctxt "Default value for the name of the theme."
+msgid "theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:42
+msgctxt "Default value for the text domain of the theme."
+msgid "theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:36
+msgctxt "Default value for the title of the theme."
+msgid "Theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:48
+msgctxt "Desciption of the command `wp skouerr make:post-type`"
+msgid "Create a new post type in the theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:36
+msgctxt "Description for the command `wp skouerr make:theme`"
+msgid "Create a new theme in themes directory"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:33
+msgctxt "Description of the `wp skouerr list` command"
+msgid "Display the commands used by Skouerr cli"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:45
+msgctxt "Description of the command `wp skouerr import:block`"
+msgid "Import a block in the theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:42
+msgctxt "Description of the command `wp skouerr list:blocks`"
+msgid "List all blocks in the theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:39
+msgctxt "Description of the command `wp skouerr make:block`"
+msgid "Create a new block in the theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:54
+msgctxt "Description of the command `wp skouerr make:template`"
+msgid "Create a new template in the theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:51
+msgctxt "Description of the command `wp skouerr save:template`"
+msgid "Save a template in the theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-list-blocks.php:26
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-list-blocks.php:34
+msgctxt "Header of the blocs table"
+msgid "category"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-list-blocks.php:27
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-list-blocks.php:35
+msgctxt "Header of the blocs table"
+msgid "icon"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-list-blocks.php:25
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-list-blocks.php:32
+msgctxt "Header of the blocs table"
+msgid "name"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-list-blocks.php:24
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-list-blocks.php:33
+msgctxt "Header of the blocs table"
+msgid "title"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:101
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:129
+msgctxt "Header of the command `wp skouerr list`"
+msgid "Command name"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:103
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:131
+msgctxt "Header of the command `wp skouerr list`"
+msgid "Description"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:102
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:130
+msgctxt "Header of the command `wp skouerr list`"
+msgid "Title"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://r2.fr"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://skouerr.dev"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:32
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:89
+msgctxt "Input choice of the command `wp skouerr make:block`"
+msgid "ACF (needs ACF Pro)"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:116
+msgctxt "Input of the command `wp skouerr make:block`"
+msgid "Do you confirm creation of block ?"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:104
+msgctxt "Input of the command `wp skouerr make:block`"
+msgid ""
+"Enter the dashicon of the block (https://developer.wordpress."
+"org/resource/dashicons)"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:96
+msgctxt "Input of the command `wp skouerr make:block`"
+msgid "Enter the name of the block"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:98
+msgctxt "Input of the command `wp skouerr make:block`"
+msgid "Select the prefix"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:94
+msgctxt "Input of the command `wp skouerr make:block`"
+msgid "Select the template"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:86
+msgctxt "Input of the command `wp skouerr make:block`"
+msgid "Select the type of block"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-post-type.php:37
+msgctxt "Input of the command `wp skouerr make:post-type`"
+msgid "Enter the domain of the post type"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-post-type.php:38
+msgctxt "Input of the command `wp skouerr make:post-type`"
+msgid "Enter the icon of the post type"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-post-type.php:36
+msgctxt "Input of the command `wp skouerr make:post-type`"
+msgid "Enter the label of the post type"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-post-type.php:35
+msgctxt "Input of the command `wp skouerr make:post-type`"
+msgid "Enter the slug of the post type"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-template.php:30
+msgctxt "Input of the command `wp skouerr make:template`"
+msgid "Enter the name of the template"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:38
+msgctxt "Input of the command `wp skouerr make:theme`"
+msgid "Enter the name of the theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:41
+msgctxt "Input of the command `wp skouerr make:theme`"
+msgid "Enter the text domain of the theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:35
+msgctxt "Input of the command `wp skouerr make:theme`"
+msgid "Enter the title of the theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-save-pattern.php:54
+msgctxt "Input of the command `wp skouerr save:pattern`."
+msgid "Select a pattern"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-save-template.php:72
+msgctxt "Input of the command `wp skouerr save:template`"
+msgid "Select a template"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:96
+msgid "Invalid parameters. $cli_name and $commands cannot be null."
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:66
+msgctxt "Log for the command `wp skouerr make:block`"
+msgid "Block created successfully"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-save-template.php:64
+msgctxt "Log message for the command `wp skouerr save:template`"
+msgid "No template found"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:49
+msgctxt "Log message of the command `wp skouerr make:theme`"
+msgid "Error downloading theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:62
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Composer dependencies installed"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:99
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Error downloading theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:116
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Error unzipping theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:60
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Install composer dependencies ..."
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:45
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Start Downloading theme ..."
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:52
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Start unzipping theme ..."
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:56
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Switching to theme ..."
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:64
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Theme created successfully, enjoy!"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:47
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Theme downloaded"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:58
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Theme switched"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-theme.php:54
+msgctxt "Log message of the command `wp skouerr make:theme`."
+msgid "Theme unzipped"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:109
+#, php-format
+msgctxt "Log of the command `wp skouerr list`"
+msgid "An error occurred while retrieving commands: %s"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:106
+msgctxt "Log of the command `wp skouerr list`"
+msgid "List of commands used by the skouerr cli plugin"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:113
+msgctxt "Log of the command `wp skouerr make:block`"
+msgid " Icon: "
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:109
+msgctxt "Log of the command `wp skouerr make:block`"
+msgid " Name: "
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:112
+msgctxt "Log of the command `wp skouerr make:block`"
+msgid " Slug: "
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:111
+msgctxt "Log of the command `wp skouerr make:block`"
+msgid " Template: "
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:108
+msgctxt "Log of the command `wp skouerr make:block`"
+msgid " Title: "
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:110
+msgctxt "Log of the command `wp skouerr make:block`"
+msgid " Type: "
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:119
+msgctxt "Log of the command `wp skouerr make:block`"
+msgid "Block creation aborted"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:107
+msgctxt "Log of the command `wp skouerr make:block`"
+msgid "Confirm the following information:"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:150
+msgctxt "Log of the command `wp skouerr make:block`"
+msgid "This template is not available"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-post-type.php:62
+#, php-format
+msgctxt "Log of the command `wp skouerr make:post-type`"
+msgid "Post type %s created"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-template.php:32
+msgctxt "Log of the command `wp skouerr make:template`"
+msgid "Template created"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-save-pattern.php:52
+msgctxt "Log of the command `wp skouerr save:pattern`"
+msgid "No patterns in database found"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-save-pattern.php:34
+#, php-format
+msgctxt ""
+"Log of the command `wp skouerr save:pattern`. %s correspond to the pattern "
+"name."
+msgid "Pattern %s saved"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-save-template.php:34
+#, php-format
+msgctxt ""
+"Log of the command `wp skouerr save:template`. %s correspond to the template."
+msgid "Template %s saved"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:117
+msgid "no"
+msgstr ""
+
+#. Author of the plugin
+msgid "R2"
+msgstr ""
+
+#. Name of the plugin
+msgid "Skouerr CLI (Good version)"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-import-block.php:30
+msgid "This command is not implemented yet"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:45
+msgctxt "Title of the command `wp skouerr import:block`"
+msgid "Import block"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:42
+msgctxt "Title of the command `wp skouerr list:blocks`"
+msgid "List blocks"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:33
+msgctxt "Title of the command `wp skouerr list`"
+msgid "List of commands"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:39
+msgctxt "Title of the command `wp skouerr make:block`"
+msgid "Make a block"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:48
+msgctxt "Title of the command `wp skouerr make:post-type`"
+msgid "Make a post type"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:54
+msgctxt "Title of the command `wp skouerr make:template`"
+msgid "Make a template"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:36
+msgctxt "Title of the command `wp skouerr make:theme`"
+msgid "Make a theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:57
+msgctxt "Title of the command `wp skouerr save:pattern`"
+msgid "Save a pattern"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:57
+msgctxt "Title of the command `wp skouerr save:pattern`"
+msgid "Save a pattern in the theme"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/class-skouerr-cli.php:51
+msgctxt "Title of the command `wp skouerr save:template`"
+msgid "Save a template"
+msgstr ""
+
+#: ../../../../../../skouerr-cli/includes/commands/class-skouerr-cli-make-block.php:117
+msgid "yes"
+msgstr ""
