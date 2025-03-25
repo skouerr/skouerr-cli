@@ -27,6 +27,7 @@ require __DIR__ . '/includes/commands/class-skouerr-cli-make-theme.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-make-block.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-make-post-type.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-make-variation.php';
+require __DIR__ . '/includes/commands/class-skouerr-cli-make-binding.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-make-template.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-save-template.php';
 require __DIR__ . '/includes/commands/class-skouerr-cli-save-pattern.php';
