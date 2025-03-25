@@ -11,7 +11,6 @@
  * Skouerr_CLI_Make_Binding class handles the creation of a new block binding
  * using WP-CLI (WordPress Command Line Interface).
  */
-
 class Skouerr_CLI_Make_Binding {
 
 
@@ -25,7 +24,7 @@ class Skouerr_CLI_Make_Binding {
 	 * Make Variation
 	 */
 	public function make_binding( $args, $assoc_args ) {
-		
+
 		if ( isset( $assoc_args['title'] ) ) {
 			$this->title = $assoc_args['title'];
 		} else {
@@ -40,8 +39,8 @@ class Skouerr_CLI_Make_Binding {
 
 		$plugin_path = dirname( __DIR__, 2 );
 		$source = $plugin_path . '/templates/binding/default';
-		$destination = get_template_directory() . '/bindings/'.$this->name.'/' . $this->name . '.php';
-		mkdir( get_template_directory() . '/bindings/'.$this->name );
+		$destination = get_template_directory() . '/bindings/' . $this->name . '/' . $this->name . '.php';
+		mkdir( get_template_directory() . '/bindings/' . $this->name );
 
 		copy( $source, $destination );
 

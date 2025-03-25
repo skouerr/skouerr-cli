@@ -11,12 +11,12 @@
  * @package Skouerr_CLI
  */
 
-if (! defined('ABSPATH')) {
-	die('Kangaroos cannot jump here');
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
 }
 
 // Plugin path.
-define('SKOUERR_CLI_PATH', __DIR__);
+define( 'SKOUERR_CLI_PATH', __DIR__ );
 
 // Include constants.
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'constants.php';

@@ -53,7 +53,6 @@ class Skouerr_CLI {
 		$skouerr_cli_make_binding = new Skouerr_CLI_Make_Binding();
 		$this->register_command( 'make:binding', array( $skouerr_cli_make_binding, 'make_binding' ), __( 'Make a binding' ), __( 'Create a new block binding in the theme' ) );
 
-
 		$skouerr_cli_list_blocks = new Skouerr_CLI_List_Blocks();
 		$this->register_command( 'list:blocks', array( $skouerr_cli_list_blocks, 'list_blocks' ), __( 'List blocks' ), __( 'List all blocks in the theme' ) );
 
