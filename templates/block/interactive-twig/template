@@ -1,0 +1,12 @@
+<div
+	class="block block-%SK_BLOCK_NAME%"
+	data-wp-interactive="%SK_BLOCK_SLUG%"
+	data-wp-context='{ "open": false }'
+>
+	<button type="button" data-wp-on--click="actions.toggle" data-wp-bind--aria-expanded="context.open">
+		Toggle
+	</button>
+	<div data-wp-bind--hidden="!context.open">
+
+	</div>
+</div>

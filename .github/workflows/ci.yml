@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - main
+      - develop
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Quality (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ["8.3", "8.4", "8.5"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: zip
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Audit dependencies
+        run: composer audit
+
+      - name: Check version consistency
+        run: php bin/check-version.php
+
+      - name: Coding standards
+        run: vendor/bin/phpcs
+
+      - name: Static analysis
+        run: vendor/bin/phpstan analyse --no-progress --memory-limit=1G
+
+      - name: Unit tests
+        run: vendor/bin/phpunit
+
+  integration:
+    name: Integration (WordPress, PHP 8.5)
+    runs-on: ubuntu-latest
+    needs: quality
+
+    services:
+      mysql:
+        image: mariadb:11
+        env:
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: wordpress
+        ports:
+          - 3306:3306
+        options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval=5s --health-retries=10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: "8.5"
+          extensions: zip, mysqli
+          # The version used by the team: keep it pinned and test upgrades explicitly.
+          tools: wp-cli:2.12.0
+          coverage: none
+          # WP-CLI 2.12 still triggers PHP 8.5 deprecations.
+          ini-values: error_reporting=E_ALL & ~E_DEPRECATED, memory_limit=512M
+
+      - name: Install WordPress
+        run: |
+          mkdir -p /tmp/wordpress && cd /tmp/wordpress
+          wp core download --quiet
+          wp config create --dbname=wordpress --dbuser=root --dbpass=root --dbhost=127.0.0.1 --skip-check
+          wp core install --url=http://localhost --title=CI --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email
+          mkdir -p wp-content/mu-plugins/skouerr-cli
+          cp -r "$GITHUB_WORKSPACE"/skouerr-cli.php "$GITHUB_WORKSPACE"/src "$GITHUB_WORKSPACE"/templates "$GITHUB_WORKSPACE"/skills "$GITHUB_WORKSPACE"/languages wp-content/mu-plugins/skouerr-cli/
+          echo '<?php require __DIR__ . "/skouerr-cli/skouerr-cli.php";' > wp-content/mu-plugins/load-skouerr-cli.php
+          wp theme activate twentytwentyfive
+
+      - name: Smoke tests
+        run: tests/integration/smoke.sh /tmp/wordpress
+
+      - name: Library tests (make:theme, import:block)
+        run: tests/integration/library.sh /tmp/wordpress

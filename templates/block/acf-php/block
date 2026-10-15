@@ -11,7 +11,8 @@
   "script": [
     "dist/script.js"
   ],
-  "category": "theme_utils-blocks",
+  "category": "%SK_BLOCK_CATEGORY%",
+  "textdomain": "%SK_BLOCK_TEXTDOMAIN%",
   "supports": {
     "jsx": true,
     "className": true

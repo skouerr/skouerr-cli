@@ -1,38 +1,56 @@
 {
   "name": "skouerr/skouerr-cli",
-  "description": "A WordPress MU plugin to provide a custom command-line interface, facilitating the management and administration of tasks specific to the Skouerr site.",
+  "description": "WP-CLI commands to scaffold and maintain Skouerr FSE themes. Agent-friendly: JSON output, non-interactive mode, dry-run.",
   "type": "wordpress-muplugin",
   "license": "GPL-2.0-or-later",
-  "version": "1.1.0",
+  "version": "2.0.0",
+  "keywords": ["wordpress", "wp-cli", "fse", "block-theme", "scaffold", "skouerr"],
   "authors": [
     {
       "name": "Agence R2",
       "email": "web@r2.fr"
     }
   ],
-  "repositories": [],
   "require": {
-    "php": ">=8.0",
-    "symfony/console": "^6.4.3",
-    "symfony/string": "^6.4.3",
-    "symfony/finder": "6.0"
+    "php": "^8.3"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.10",
-    "wp-coding-standards/wpcs": "^3.0"
+    "php-stubs/wp-cli-stubs": "^2.11",
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^12.0",
+    "squizlabs/php_codesniffer": "^3.13.6",
+    "szepeviktor/phpstan-wordpress": "^2.0",
+    "wp-coding-standards/wpcs": "^3.4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Skouerr\\Cli\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Skouerr\\Cli\\Tests\\": "tests/"
+    }
   },
   "config": {
+    "platform": {
+      "php": "8.3.0"
+    },
+    "sort-packages": true,
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "composer/installers": true
     }
   },
   "scripts": {
-    "phpcs": [
-      "./vendor/bin/phpcs -ps *.php includes/* --standard=phpcs.xml"
-    ],
-    "phpfix": [
-      "./vendor/bin/phpcbf -ps *.php includes/* --standard=phpcs.xml"
+    "test": "phpunit",
+    "phpstan": "phpstan analyse --memory-limit=1G",
+    "phpcs": "phpcs",
+    "phpfix": "phpcbf",
+    "check": [
+      "@phpcs",
+      "@phpstan",
+      "@test"
     ]
   }
 }

@@ -1,0 +1,14 @@
+/*
+ * Front-end behaviour of the %SK_BLOCK_SLUG% block (Interactivity API).
+ * Native ES module: no build step needed.
+ */
+import { store, getContext } from '@wordpress/interactivity';
+
+store( '%SK_BLOCK_SLUG%', {
+	actions: {
+		toggle() {
+			const context = getContext();
+			context.open = ! context.open;
+		},
+	},
+} );
