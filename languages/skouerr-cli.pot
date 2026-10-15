@@ -1,0 +1,903 @@
+# Copyright (C) 2026 R2
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Skouerr CLI 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/skouerr-cli\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-15T09:19:17+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: skouerr-cli\n"
+
+#. Plugin Name of the plugin
+#: skouerr-cli.php
+msgid "Skouerr CLI"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: skouerr-cli.php
+msgid "https://skouerr.dev"
+msgstr ""
+
+#. Description of the plugin
+#: skouerr-cli.php
+msgid "WP-CLI commands and abilities to scaffold and maintain Skouerr FSE themes. Agent-friendly: JSON output, non-interactive mode, dry-run, Abilities API."
+msgstr ""
+
+#. Author of the plugin
+#: skouerr-cli.php
+msgid "R2"
+msgstr ""
+
+#. Author URI of the plugin
+#: skouerr-cli.php
+msgid "https://r2.fr"
+msgstr ""
+
+#. translators: %s: item type (pattern, template or navigation).
+#: src/Command/AbstractSaveCommand.php:112
+#, php-format
+msgid "Select a %s"
+msgstr ""
+
+#. translators: %1$d: number of items, %2$s: item type (pattern, template or navigation).
+#: src/Command/AbstractSaveCommand.php:141
+#, php-format
+msgid "%1$d %2$s(s) in the database."
+msgstr ""
+
+#. translators: %s: item type (pattern, template or navigation).
+#: src/Command/AbstractSaveCommand.php:146
+#, php-format
+msgid "No %s found in the database."
+msgstr ""
+
+#: src/Command/AbstractSaveCommand.php:162
+msgid "Move the database copy to the trash so the theme file is used?"
+msgstr ""
+
+#. translators: %1$s: item type (pattern, template or navigation), %2$d: post ID.
+#: src/Command/AbstractSaveCommand.php:168
+#, php-format
+msgid "Cannot move %1$s #%2$d to the trash."
+msgstr ""
+
+#: src/Command/AbstractSaveCommand.php:174
+msgid "The database copy is kept and still overrides the theme file. Pass --delete to move it to the trash."
+msgstr ""
+
+#. translators: %1$d: number of items, %2$s: item type (pattern, template or navigation).
+#: src/Command/AbstractSaveCommand.php:181
+#, php-format
+msgid "%1$d %2$s(s) saved."
+msgstr ""
+
+#. translators: %1$s: item type (Pattern, Template or Navigation), %2$s: slug or ID.
+#: src/Command/AbstractSaveCommand.php:210
+#, php-format
+msgid "%1$s \"%2$s\" not found in the database."
+msgstr ""
+
+#. translators: %s: directory path.
+#: src/Command/AgentInstallCommand.php:77
+#, php-format
+msgid "Directory %s not found."
+msgstr ""
+
+#: src/Command/AgentInstallCommand.php:88
+msgid "AGENTS.md exists and does not mention Skouerr CLI: it was left untouched."
+msgstr ""
+
+#. translators: %1$s: template AGENTS.md path, %2$s: project AGENTS.md path.
+#: src/Command/AgentInstallCommand.php:90
+#, php-format
+msgid "Add the instructions of %1$s to %2$s."
+msgstr ""
+
+#: src/Command/AgentInstallCommand.php:96
+msgid "Agent files installed."
+msgstr ""
+
+#: src/Command/DeleteBlockCommand.php:68
+msgid "Block to delete"
+msgstr ""
+
+#. translators: %s: block folder name.
+#: src/Command/DeleteBlockCommand.php:86
+#: src/Command/RenameBlockCommand.php:105
+#, php-format
+msgid "Block folder blocks/%s not found."
+msgstr ""
+
+#. translators: %1$d: number of files, %2$s: block name.
+#: src/Command/DeleteBlockCommand.php:101
+#, php-format
+msgid "Delete %1$d files of block %2$s?"
+msgstr ""
+
+#: src/Command/DeleteBlockCommand.php:102
+msgid "Deletion aborted. Pass --yes to confirm in non-interactive mode."
+msgstr ""
+
+#. translators: %s: block name.
+#: src/Command/DeleteBlockCommand.php:109
+#, php-format
+msgid "Block %s deleted."
+msgstr ""
+
+#. translators: %1$s: block name, %2$d: number of posts, %3$s: list of posts.
+#: src/Command/DeleteBlockCommand.php:131
+#, php-format
+msgid "Block %1$s is still used in %2$d post(s): %3$s."
+msgstr ""
+
+#. translators: %1$s: block name, %2$s: list of files.
+#: src/Command/DeleteBlockCommand.php:135
+#, php-format
+msgid "Block %1$s is still used in theme files: %2$s."
+msgstr ""
+
+#. translators: %s: command name.
+#: src/Command/DescribeCommand.php:75
+#, php-format
+msgid "Unknown command \"%s\"."
+msgstr ""
+
+#. translators: %d: number of commands.
+#: src/Command/DescribeCommand.php:100
+#, php-format
+msgid "%d command(s) described."
+msgstr ""
+
+#: src/Command/ImportCommand.php:75
+msgid "Skouerr library"
+msgstr ""
+
+#: src/Command/ImportCommand.php:82
+msgid "Type of item to import"
+msgstr ""
+
+#: src/Command/ImportCommand.php:88
+msgid "Item to import"
+msgstr ""
+
+#. translators: %1$d: number of items, %2$s: item type (blocks, patterns or templates), %3$s: library URL.
+#: src/Command/ImportCommand.php:115
+#, php-format
+msgid "%1$d %2$s available in %3$s."
+msgstr ""
+
+#. translators: %s: item name.
+#: src/Command/ImportCommand.php:123
+#, php-format
+msgid "Downloading %s…"
+msgstr ""
+
+#: src/Command/ImportCommand.php:126
+#: src/Command/MakeThemeCommand.php:116
+msgid "The archive checksum was not verified (no --sha256 and no X-Skouerr-Sha256 header)."
+msgstr ""
+
+#. translators: %s: block name.
+#: src/Command/ImportCommand.php:153
+#, php-format
+msgid "Block %s imported."
+msgstr ""
+
+#. translators: %s: pattern name.
+#: src/Command/ImportCommand.php:155
+#, php-format
+msgid "Pattern %s imported."
+msgstr ""
+
+#. translators: %s: template name.
+#: src/Command/ImportCommand.php:157
+#, php-format
+msgid "Template %s imported."
+msgstr ""
+
+#: src/Command/ImportCommand.php:182
+msgid "No Skouerr library configured (filter \"skouerr_import_libraries\")."
+msgstr ""
+
+#. translators: %s: theme slug.
+#: src/Command/InfoCommand.php:99
+#, php-format
+msgid "Theme %s."
+msgstr ""
+
+#. translators: %s: file path.
+#: src/Command/ListBlocksCommand.php:59
+#, php-format
+msgid "Invalid JSON in %s."
+msgstr ""
+
+#. translators: %d: number of blocks.
+#: src/Command/ListBlocksCommand.php:76
+#, php-format
+msgid "%d blocks found."
+msgstr ""
+
+#. translators: %d: number of commands.
+#: src/Command/ListCommand.php:57
+#, php-format
+msgid "%d commands. Run \"wp help skouerr <command>\" for details."
+msgstr ""
+
+#: src/Command/MakeBindingCommand.php:64
+msgid "Title of the binding"
+msgstr ""
+
+#: src/Command/MakeBindingCommand.php:70
+msgid "Name of the binding"
+msgstr ""
+
+#. translators: %s: binding name.
+#: src/Command/MakeBindingCommand.php:107
+#, php-format
+msgid "Block binding skouerr/%s created."
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:70
+msgid "Title of the block"
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:76
+msgid "Name of the block"
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:83
+msgid "Type of block"
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:90
+msgid "Template engine"
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:97
+msgid "Block namespace"
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:104
+#: src/Command/MakePostTypeCommand.php:90
+#: src/Command/MakeVariationCommand.php:85
+msgid "Dashicon"
+msgstr ""
+
+#. translators: %1$s: template engine, %2$s: block type.
+#: src/Command/MakeBlockCommand.php:150
+#, php-format
+msgid "No \"%1$s\" template for \"%2$s\" blocks."
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:158
+msgid "--fields only applies to ACF blocks (--type=acf). Use --attributes for other blocks."
+msgstr ""
+
+#. translators: %1$s: block title, %2$s: block name, %3$s: block type, %4$s: template engine, %5$s: dashicon.
+#: src/Command/MakeBlockCommand.php:164
+#, php-format
+msgid "%1$s (%2$s) — %3$s, %4$s template, icon %5$s"
+msgstr ""
+
+#. translators: %s: block summary.
+#: src/Command/MakeBlockCommand.php:166
+#, php-format
+msgid "Create block %s?"
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:167
+msgid "Block creation aborted."
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:206
+msgid "Build the block assets with the theme bundler (e.g. npm run build)."
+msgstr ""
+
+#. translators: %1$s: block folder name.
+#: src/Command/MakeBlockCommand.php:209
+#, php-format
+msgid "Add blocks/%1$s/src/%1$s.editor.js as a JSX entry of the bundler, output blocks/%1$s/dist/editor.js."
+msgstr ""
+
+#. translators: %s: block name.
+#: src/Command/MakeBlockCommand.php:213
+#, php-format
+msgid "Block %s created."
+msgstr ""
+
+#. translators: %s: dashicon name.
+#: src/Command/MakeBlockCommand.php:228
+#: src/Command/MakePostTypeCommand.php:114
+#, php-format
+msgid "Unknown dashicon \"%s\"."
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:231
+msgid "The \"core\" namespace is reserved for WordPress core blocks."
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:234
+msgid "ACF Pro is not active: ACF blocks will not be registered."
+msgstr ""
+
+#: src/Command/MakeBlockCommand.php:237
+msgid "Timber is not installed: Twig templates will not render."
+msgstr ""
+
+#: src/Command/MakePatternCommand.php:66
+msgid "Title of the pattern"
+msgstr ""
+
+#: src/Command/MakePatternCommand.php:72
+msgid "Name of the pattern"
+msgstr ""
+
+#: src/Command/MakePatternCommand.php:87
+msgid "Categories (comma-separated)"
+msgstr ""
+
+#. translators: %s: pattern slug.
+#: src/Command/MakePatternCommand.php:151
+#, php-format
+msgid "Pattern %s created."
+msgstr ""
+
+#: src/Command/MakePostTypeCommand.php:66
+msgid "Slug of the post type"
+msgstr ""
+
+#: src/Command/MakePostTypeCommand.php:72
+#: src/Command/MakeTaxonomyCommand.php:73
+msgid "Singular label"
+msgstr ""
+
+#: src/Command/MakePostTypeCommand.php:77
+#: src/Command/MakeTaxonomyCommand.php:78
+msgid "Plural label"
+msgstr ""
+
+#: src/Command/MakePostTypeCommand.php:83
+msgid "Text domain"
+msgstr ""
+
+#. translators: %s: post type slug.
+#: src/Command/MakePostTypeCommand.php:110
+#, php-format
+msgid "A post type \"%s\" is already registered."
+msgstr ""
+
+#. translators: %s: post type slug.
+#: src/Command/MakePostTypeCommand.php:145
+#, php-format
+msgid "Post type %s created."
+msgstr ""
+
+#: src/Command/MakeStyleCommand.php:79
+msgid "Title of the style"
+msgstr ""
+
+#: src/Command/MakeStyleCommand.php:85
+msgid "Name of the style"
+msgstr ""
+
+#: src/Command/MakeStyleCommand.php:93
+msgid "Blocks (comma-separated)"
+msgstr ""
+
+#: src/Command/MakeStyleCommand.php:121
+msgid "The block-style template is not valid JSON."
+msgstr ""
+
+#. translators: %s: style name.
+#: src/Command/MakeStyleCommand.php:144
+#, php-format
+msgid "Block style %s created."
+msgstr ""
+
+#. translators: %s: style name.
+#: src/Command/MakeStyleCommand.php:146
+#, php-format
+msgid "Style variation %s created."
+msgstr ""
+
+#: src/Command/MakeTaxonomyCommand.php:67
+msgid "Slug of the taxonomy"
+msgstr ""
+
+#: src/Command/MakeTaxonomyCommand.php:84
+msgid "Post types (comma-separated)"
+msgstr ""
+
+#. translators: %s: taxonomy slug.
+#: src/Command/MakeTaxonomyCommand.php:110
+#, php-format
+msgid "A taxonomy \"%s\" is already registered."
+msgstr ""
+
+#: src/Command/MakeTaxonomyCommand.php:138
+msgid "The theme loader does not seem to load taxonomies/: require the file from functions.php."
+msgstr ""
+
+#. translators: %1$s: taxonomy slug.
+#: src/Command/MakeTaxonomyCommand.php:140
+#, php-format
+msgid "Add require_once __DIR__ . '/taxonomies/%1$s/%1$s.functions.php'; to functions.php."
+msgstr ""
+
+#. translators: %s: taxonomy slug.
+#: src/Command/MakeTaxonomyCommand.php:156
+#, php-format
+msgid "Taxonomy %s created."
+msgstr ""
+
+#: src/Command/MakeTemplateCommand.php:64
+msgid "Name of the template"
+msgstr ""
+
+#. translators: %s: template name.
+#: src/Command/MakeTemplateCommand.php:84
+#, php-format
+msgid "Template %s created."
+msgstr ""
+
+#: src/Command/MakeThemeCommand.php:67
+msgid "Title of the theme"
+msgstr ""
+
+#: src/Command/MakeThemeCommand.php:73
+msgid "Folder name of the theme"
+msgstr ""
+
+#: src/Command/MakeThemeCommand.php:79
+msgid "Text domain of the theme"
+msgstr ""
+
+#: src/Command/MakeThemeCommand.php:113
+msgid "Downloading theme…"
+msgstr ""
+
+#: src/Command/MakeThemeCommand.php:119
+msgid "Extracting theme…"
+msgstr ""
+
+#. translators: %s: theme folder name.
+#: src/Command/MakeThemeCommand.php:144
+#, php-format
+msgid "Theme %s would be installed."
+msgstr ""
+
+#: src/Command/MakeThemeCommand.php:151
+msgid "Activate the theme now?"
+msgstr ""
+
+#: src/Command/MakeThemeCommand.php:154
+msgid "Theme activated."
+msgstr ""
+
+#. translators: %s: theme folder name.
+#: src/Command/MakeThemeCommand.php:162
+#, php-format
+msgid "Theme %s created."
+msgstr ""
+
+#: src/Command/MakeThemeCommand.php:178
+msgid "Composer not found in PATH: run \"composer install\" in the theme manually."
+msgstr ""
+
+#: src/Command/MakeThemeCommand.php:183
+msgid "Installing Composer dependencies…"
+msgstr ""
+
+#. translators: %s: error output of Composer.
+#: src/Command/MakeThemeCommand.php:187
+#, php-format
+msgid "composer install failed: %s"
+msgstr ""
+
+#. translators: %s: error output of the setup command.
+#: src/Command/MakeThemeCommand.php:218
+#, php-format
+msgid "wp skouerr-theme setup failed: %s"
+msgstr ""
+
+#: src/Command/MakeVariationCommand.php:66
+msgid "Block to create a variation for"
+msgstr ""
+
+#: src/Command/MakeVariationCommand.php:72
+msgid "Title of the variation"
+msgstr ""
+
+#: src/Command/MakeVariationCommand.php:78
+msgid "Name of the variation"
+msgstr ""
+
+#. translators: %1$s: variation name, %2$s: block name.
+#: src/Command/MakeVariationCommand.php:126
+#, php-format
+msgid "Variation %1$s of %2$s created."
+msgstr ""
+
+#: src/Command/RenameBlockCommand.php:70
+msgid "Block to rename"
+msgstr ""
+
+#: src/Command/RenameBlockCommand.php:77
+msgid "New name"
+msgstr ""
+
+#: src/Command/RenameBlockCommand.php:110
+msgid "Nothing to rename: --to is the current name."
+msgstr ""
+
+#. translators: %s: block folder name.
+#: src/Command/RenameBlockCommand.php:117
+#, php-format
+msgid "No block.json with a \"name\" in blocks/%s."
+msgstr ""
+
+#. translators: %d: number of posts.
+#: src/Command/RenameBlockCommand.php:157
+#, php-format
+msgid "Block renamed in %d post(s)."
+msgstr ""
+
+#. translators: %d: number of posts.
+#: src/Command/RenameBlockCommand.php:160
+#, php-format
+msgid "Would rename the block in %d post(s)."
+msgstr ""
+
+#. translators: %1$s: old block name, %2$d: number of posts.
+#: src/Command/RenameBlockCommand.php:163
+#, php-format
+msgid "Block %1$s is used in %2$d post(s) that still reference the old name. Pass --update-content to rename it in the database."
+msgstr ""
+
+#: src/Command/RenameBlockCommand.php:177
+msgid "Rebuild the block assets with the theme bundler (e.g. npm run build)."
+msgstr ""
+
+#. translators: %1$s: old block name, %2$s: new block name.
+#: src/Command/RenameBlockCommand.php:180
+#, php-format
+msgid "Block %1$s renamed to %2$s."
+msgstr ""
+
+#. translators: %1$d: navigation post ID, %2$s: navigation slug.
+#: src/Command/SaveNavigationCommand.php:112
+#, php-format
+msgid "Replace <!-- wp:navigation {\"ref\":%1$d} /--> with <!-- wp:template-part {\"slug\":\"navigation-%2$s\"} /--> in the theme parts."
+msgstr ""
+
+#: src/Command/SaveStylesCommand.php:74
+msgid "No global styles to save: theme.json is up to date."
+msgstr ""
+
+#. translators: %s: file path.
+#: src/Command/SaveStylesCommand.php:82
+#, php-format
+msgid "%s is not valid JSON."
+msgstr ""
+
+#: src/Command/SaveStylesCommand.php:95
+msgid "Move the user global styles to the trash so theme.json is used?"
+msgstr ""
+
+#. translators: %d: post ID.
+#: src/Command/SaveStylesCommand.php:99
+#, php-format
+msgid "Cannot move global styles #%d to the trash."
+msgstr ""
+
+#: src/Command/SaveStylesCommand.php:104
+msgid "The user global styles are kept and still override theme.json. Pass --delete to move them to the trash."
+msgstr ""
+
+#. translators: %s: list of changed keys.
+#: src/Command/SaveStylesCommand.php:108
+#, php-format
+msgid "Global styles saved to theme.json (%s)."
+msgstr ""
+
+#: src/Compat/legacy.php:64
+msgid "Comma-separated numbers"
+msgstr ""
+
+#. translators: %s: file path.
+#: src/Console/CliException.php:49
+#, php-format
+msgid "File already exists: %s. Use --force to overwrite."
+msgstr ""
+
+#. translators: %1$s: parameter name, %2$s: parameter description.
+#: src/Console/Input.php:116
+#: src/Console/Input.php:139
+#: src/Console/Input.php:180
+#, php-format
+msgid "Missing required parameter --%1$s (%2$s)."
+msgstr ""
+
+#. translators: %1$s: value, %2$s: parameter name.
+#: src/Console/Input.php:191
+#, php-format
+msgid "Invalid value \"%1$s\" for --%2$s."
+msgstr ""
+
+#. translators: %1$s: parameter name.
+#: src/Console/Input.php:216
+#, php-format
+msgid "Parameter --%1$s expects a value: --%1$s=<value>."
+msgstr ""
+
+#. translators: %1$s: value, %2$s: parameter name, %3$s: allowed values.
+#: src/Console/Input.php:235
+#, php-format
+msgid "Invalid value \"%1$s\" for --%2$s. Expected one of: %3$s."
+msgstr ""
+
+#. translators: %1$s: value, %2$s: parameter name, %3$s: expected regular expression.
+#: src/Console/Input.php:243
+#: src/Support/Validator.php:110
+#, php-format
+msgid "Invalid value \"%1$s\" for --%2$s. Expected format: %3$s."
+msgstr ""
+
+#. translators: %s: file action (create, overwrite, delete, trash).
+#: src/Console/Output.php:151
+#, php-format
+msgid "would %s"
+msgstr ""
+
+#: src/Console/Output.php:186
+msgid "No items."
+msgstr ""
+
+#. translators: %s: success message.
+#: src/Console/Output.php:235
+#, php-format
+msgid "[dry-run] %s"
+msgstr ""
+
+#. translators: %s: suggested follow-up action.
+#: src/Console/Output.php:238
+#, php-format
+msgid "next: %s"
+msgstr ""
+
+#: src/Scaffold/BlockSchema.php:75
+msgid "--attributes must be a JSON object: {\"name\": {\"type\": \"string\"}}."
+msgstr ""
+
+#. translators: %s: attribute name.
+#: src/Scaffold/BlockSchema.php:81
+#, php-format
+msgid "Invalid attribute name \"%s\"."
+msgstr ""
+
+#. translators: %1$s: attribute name, %2$s: list of types.
+#: src/Scaffold/BlockSchema.php:87
+#, php-format
+msgid "Attribute \"%1$s\" needs a \"type\" among: %2$s."
+msgstr ""
+
+#: src/Scaffold/BlockSchema.php:105
+msgid "--fields must be a JSON array: [{\"name\": \"title\", \"type\": \"text\"}]."
+msgstr ""
+
+#: src/Scaffold/BlockSchema.php:194
+msgid "Each field needs a \"name\" in snake_case (a-z, 0-9, _)."
+msgstr ""
+
+#. translators: %1$s: field name, %2$s: list of types.
+#: src/Scaffold/BlockSchema.php:199
+#, php-format
+msgid "Field \"%1$s\" needs a \"type\" among: %2$s."
+msgstr ""
+
+#. translators: %s: field name.
+#: src/Scaffold/BlockSchema.php:205
+#, php-format
+msgid "Duplicate field \"%s\"."
+msgstr ""
+
+#. translators: %s: field name.
+#: src/Scaffold/BlockSchema.php:211
+#, php-format
+msgid "Field \"%s\": \"sub_fields\" must be an array."
+msgstr ""
+
+#. translators: %1$s: parameter name, %2$s: JSON error.
+#: src/Scaffold/BlockSchema.php:231
+#, php-format
+msgid "Invalid JSON in --%1$s: %2$s."
+msgstr ""
+
+#. translators: %s: parameter name.
+#: src/Scaffold/BlockSchema.php:235
+#, php-format
+msgid "Invalid JSON in --%s."
+msgstr ""
+
+#: src/Support/Archive.php:40
+msgid "The PHP zip extension is required."
+msgstr ""
+
+#: src/Support/Archive.php:45
+msgid "The downloaded file is not a valid ZIP archive."
+msgstr ""
+
+#. translators: %s: archive entry.
+#: src/Support/Archive.php:64
+#, php-format
+msgid "Cannot extract %s."
+msgstr ""
+
+#. translators: %1$d: number of files, %2$d: maximum number of files.
+#: src/Support/Archive.php:90
+#, php-format
+msgid "Archive contains too many files (%1$d > %2$d)."
+msgstr ""
+
+#: src/Support/Archive.php:98
+msgid "Corrupted archive."
+msgstr ""
+
+#. translators: %s: archive entry.
+#: src/Support/Archive.php:108
+#, php-format
+msgid "Archive contains a symbolic link: %s."
+msgstr ""
+
+#. translators: %s: archive entry.
+#: src/Support/Archive.php:114
+#, php-format
+msgid "Archive contains a forbidden file: %s."
+msgstr ""
+
+#: src/Support/Archive.php:119
+msgid "Archive is too large once uncompressed."
+msgstr ""
+
+#. translators: %s: archive entry.
+#: src/Support/Archive.php:143
+#, php-format
+msgid "Archive contains an unsafe path: %s."
+msgstr ""
+
+#: src/Support/Archive.php:180
+msgid "Cannot create a temporary directory."
+msgstr ""
+
+#. translators: %s: directory path.
+#: src/Support/Archive.php:194
+#: src/Support/Filesystem.php:286
+#, php-format
+msgid "Cannot create directory %s."
+msgstr ""
+
+#. translators: %s: path.
+#: src/Support/Filesystem.php:56
+#: src/Support/Filesystem.php:66
+#: src/Support/Filesystem.php:73
+#, php-format
+msgid "Unsafe path \"%s\"."
+msgstr ""
+
+#. translators: %s: path.
+#: src/Support/Filesystem.php:113
+#, php-format
+msgid "Refusing to write over a link or directory: %s."
+msgstr ""
+
+#. translators: %s: file path.
+#: src/Support/Filesystem.php:132
+#, php-format
+msgid "Cannot write %s."
+msgstr ""
+
+#. translators: %s: path.
+#: src/Support/Filesystem.php:155
+#, php-format
+msgid "Not a file: %s."
+msgstr ""
+
+#. translators: %s: file path.
+#: src/Support/Filesystem.php:166
+#, php-format
+msgid "Cannot delete %s."
+msgstr ""
+
+#. translators: %s: file path.
+#: src/Support/Filesystem.php:241
+#, php-format
+msgid "Cannot read %s."
+msgstr ""
+
+#. translators: %1$s: path, %2$s: root directory.
+#: src/Support/Filesystem.php:270
+#, php-format
+msgid "Path %1$s resolves outside of %2$s."
+msgstr ""
+
+#. translators: %s: library URL.
+#: src/Support/Libraries.php:42
+#, php-format
+msgid "Library %s is not allowed (SKOUERR_ALLOWED_LIBRARIES)."
+msgstr ""
+
+#. translators: %s: URL.
+#: src/Support/Remote.php:39
+#, php-format
+msgid "Invalid URL \"%s\"."
+msgstr ""
+
+#. translators: %s: host name.
+#: src/Support/Remote.php:45
+#, php-format
+msgid "Refusing plain HTTP for %s: use HTTPS (HTTP is only allowed for local hosts)."
+msgstr ""
+
+#. translators: %s: URL.
+#: src/Support/Remote.php:95
+#, php-format
+msgid "Invalid JSON returned by %s."
+msgstr ""
+
+#. translators: %s: URL.
+#: src/Support/Remote.php:99
+#, php-format
+msgid "Unexpected response from %s."
+msgstr ""
+
+#: src/Support/Remote.php:144
+msgid "Checksum mismatch: the downloaded archive is not the expected one."
+msgstr ""
+
+#. translators: %1$s: URL, %2$s: error message.
+#: src/Support/Remote.php:178
+#, php-format
+msgid "Request to %1$s failed: %2$s"
+msgstr ""
+
+#. translators: %1$s: URL, %2$d: HTTP status code.
+#: src/Support/Remote.php:186
+#, php-format
+msgid "Request to %1$s returned HTTP %2$d."
+msgstr ""
+
+#. translators: %s: template path.
+#: src/Support/Template.php:46
+#, php-format
+msgid "Cannot read template %s."
+msgstr ""
+
+#. translators: %s: template path.
+#: src/Support/Templates.php:66
+#, php-format
+msgid "Template \"%s\" not found."
+msgstr ""
+
+#. translators: %s: theme slug.
+#: src/Support/Theme.php:44
+#, php-format
+msgid "Theme \"%s\" not found."
+msgstr ""
+
+#. translators: %s: parameter name.
+#: src/Support/Validator.php:73
+#, php-format
+msgid "Parameter --%s cannot be empty."
+msgstr ""
+
+#. translators: %s: parameter name.
+#: src/Support/Validator.php:77
+#, php-format
+msgid "Parameter --%s is limited to 100 characters."
+msgstr ""

@@ -1,56 +1,64 @@
 <?xml version="1.0"?>
-<ruleset name="Pivotal Agency">
-    <description>Pivotal WordPress Coding Standards</description>
+<ruleset name="Skouerr CLI">
+    <description>WordPress Coding Standards for Skouerr CLI</description>
 
-    <!-- Scan all files in the directory -->
-    <file>.</file>
+    <file>skouerr-cli.php</file>
+    <file>src</file>
+    <file>tests</file>
 
-    <!-- Ignore some directories -->
-    <exclude-pattern>vendor/</exclude-pattern>
-    <exclude-pattern>admin/assets/</exclude-pattern>
-    <exclude-pattern>admin/inc/</exclude-pattern>
+    <!-- Fake HTTP server used by the integration tests. -->
+    <exclude-pattern>tests/integration/*</exclude-pattern>
 
-
-    <!-- Scan only PHP files -->
     <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
 
-    <!-- Show colors in the console -->
-    <arg value="-colors"/>
+    <config name="minimum_supported_wp_version" value="6.5"/>
+    <config name="testVersion" value="8.3-"/>
 
-    <!-- Show sniff codes in all reports -->
-    <arg value="ns"/>
-
-    <!-- Include the WordPress-Extra standard -->
     <rule ref="WordPress-Extra">
-        <!-- Exclude specific rules if needed -->
         <exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
+        <!-- PSR-4 file names (src/Command/MakeBlockCommand.php). -->
+        <exclude name="WordPress.Files.FileName"/>
+        <!-- The plugin runs in WP-CLI only: output is plain text, not HTML. -->
+        <exclude name="WordPress.Security.EscapeOutput"/>
     </rule>
 
-    <!-- Include the WordPress-Docs standard -->
-    <rule ref="WordPress-Docs"/>
-
-    <!-- Include some extra rules from other standards -->
-    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
-    <rule ref="Generic.Commenting.Todo"/>
-
-    <!-- Include PHPCSUtils standard -->
-    <rule ref="vendor/phpcsstandards/phpcsutils/PHPCSUtils/ruleset.xml">
-        <!-- Exclude specific sniffs if needed -->
-    </rule>
-
-    <rule ref="Squiz.Commenting.FunctionComment.MissingParamTag">
+    <rule ref="WordPress-Docs">
+        <!-- Overridden methods use {@inheritDoc}. -->
         <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
-        <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
+        <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing"/>
+        <!-- Generic types (list<string>, array{...}) are checked by PHPStan. -->
+        <exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
+        <!-- Inline @var annotations. -->
+        <exclude name="Generic.Commenting.DocComment.MissingShort"/>
     </rule>
 
-    <rule ref="WordPress.Security.NonceVerification.Missing">
-        <exclude name="WordPress.Security.NonceVerification.Missing"/>
+    <!-- $default is the natural name for prompt defaults; named arguments are not used on these methods. -->
+    <rule ref="Universal.NamingConventions.NoReservedKeywordParameterNames">
+        <severity>0</severity>
     </rule>
 
-    <rule ref="Squiz.Commenting.VariableComment.Missing">
-        <exclude name="Squiz.Commenting.VariableComment.Missing"/>
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array" value="skouerr-cli"/>
+        </properties>
     </rule>
 
-    <!-- Configuration for minimum supported WordPress version -->
-    <config name="minimum_supported_wp_version" value="6.1"/>
+    <!-- Tests follow PHPUnit conventions. -->
+    <rule ref="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Commenting">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+    <rule ref="Generic.Commenting.DocComment.MissingShort">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.WP.AlternativeFunctions">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.PHP.DiscouragedPHPFunctions">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
 </ruleset>

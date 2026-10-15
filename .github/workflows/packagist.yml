@@ -1,17 +1,28 @@
-name: Update package on packagist
+name: Update package on Packagist
+
 on:
   push:
     branches:
       - main
+    tags:
+      - "*"
+
+permissions:
+  contents: read
+
 jobs:
   update:
-    name: Update package on packagist
+    name: Notify Packagist
     runs-on: ubuntu-latest
     steps:
-      - name: Update package on packagist
-        uses: mnavarrocarter/packagist-update@v1.0
-        with:
-          username: "marcelguillaume"
-          api_token: ${{ secrets.PACKAGIST_API_TOKEN }}
-          package_name: skouerr/skouerr-cli # No need to be explicit if you have checked out a composer.json
-          domain: "packagist.org" # This is by default, so no need to specify this.
+      # Direct API call: the token is never handed to a third-party action.
+      - name: Notify Packagist
+        env:
+          PACKAGIST_USERNAME: marcelguillaume
+          PACKAGIST_API_TOKEN: ${{ secrets.PACKAGIST_API_TOKEN }}
+        run: |
+          curl --fail --silent --show-error -X POST \
+            -H 'Content-Type: application/json' \
+            -H "Authorization: Bearer ${PACKAGIST_USERNAME}:${PACKAGIST_API_TOKEN}" \
+            https://packagist.org/api/update-package \
+            -d '{"repository":"https://packagist.org/packages/skouerr/skouerr-cli"}'

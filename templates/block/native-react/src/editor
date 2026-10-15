@@ -1,0 +1,28 @@
+/*
+ * Block editor UI, written in JSX.
+ * Build: src/%SK_BLOCK_NAME%.editor.js -> dist/editor.js (with its editor.asset.php).
+ */
+import { registerBlockType } from '@wordpress/blocks';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody } from '@wordpress/components';
+import ServerSideRender from '@wordpress/server-side-render';
+import metadata from '../%SK_BLOCK_NAME%.block.json';
+
+registerBlockType( metadata.name, {
+	edit( { attributes } ) {
+		const blockProps = useBlockProps();
+
+		return (
+			<div { ...blockProps }>
+				<InspectorControls>
+					<PanelBody title={ metadata.title }>
+						{ /* Attribute controls. */ }
+					</PanelBody>
+				</InspectorControls>
+				<ServerSideRender block={ metadata.name } attributes={ attributes } />
+			</div>
+		);
+	},
+	// Rendered on the server by the controller.
+	save: () => null,
+} );

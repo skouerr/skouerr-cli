@@ -1,0 +1,32 @@
+<?php
+
+add_action('init', function () {
+    register_taxonomy(
+        '%SK_TAX_SLUG%',
+        %SK_TAX_POST_TYPES%,
+        [
+            'labels' => [
+                'name' => __('%SK_TAX_PLURAL%', '%SK_TAX_DOMAIN%'),
+                'singular_name' => __('%SK_TAX_LABEL%', '%SK_TAX_DOMAIN%'),
+                'search_items' => __('Search %SK_TAX_PLURAL%', '%SK_TAX_DOMAIN%'),
+                'all_items' => __('All %SK_TAX_PLURAL%', '%SK_TAX_DOMAIN%'),
+                'parent_item' => __('Parent %SK_TAX_LABEL%', '%SK_TAX_DOMAIN%'),
+                'parent_item_colon' => __('Parent %SK_TAX_LABEL%:', '%SK_TAX_DOMAIN%'),
+                'edit_item' => __('Edit %SK_TAX_LABEL%', '%SK_TAX_DOMAIN%'),
+                'view_item' => __('View %SK_TAX_LABEL%', '%SK_TAX_DOMAIN%'),
+                'update_item' => __('Update %SK_TAX_LABEL%', '%SK_TAX_DOMAIN%'),
+                'add_new_item' => __('Add New %SK_TAX_LABEL%', '%SK_TAX_DOMAIN%'),
+                'new_item_name' => __('New %SK_TAX_LABEL% Name', '%SK_TAX_DOMAIN%'),
+                'not_found' => __('No %SK_TAX_PLURAL% found', '%SK_TAX_DOMAIN%'),
+                'back_to_items' => __('Back to %SK_TAX_PLURAL%', '%SK_TAX_DOMAIN%'),
+                'menu_name' => __('%SK_TAX_PLURAL%', '%SK_TAX_DOMAIN%'),
+            ],
+            'public' => true,
+            'hierarchical' => %SK_TAX_HIERARCHICAL%,
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'show_in_rest' => true,
+            'rewrite' => ['slug' => '%SK_TAX_SLUG%'],
+        ]
+    );
+});

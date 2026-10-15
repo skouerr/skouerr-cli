@@ -1,0 +1,9 @@
+<?php
+/**
+ * Dependencies of the %SK_BLOCK_NAME% view script module.
+ */
+
+return array(
+	'dependencies' => array( '@wordpress/interactivity' ),
+	'version'      => '1.0.0',
+);
