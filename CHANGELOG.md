@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0 — non publiée
+## 2.0.0 — 2026-10-15
 
 Réécriture complète. Voir [docs/SECURITY-AUDIT.md](docs/SECURITY-AUDIT.md) pour le détail des failles corrigées.
 
