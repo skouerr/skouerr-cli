@@ -88,4 +88,32 @@ final class BlockScaffoldTest extends TestCase {
 		self::assertTrue( $json['supports']['interactivity'] );
 		self::assertStringStartsWith( "{\n  \"", $files['hero.block.json'], 'Two-space indentation is kept.' );
 	}
+
+	/**
+	 * @return iterable<string, array{string, string}>
+	 */
+	public static function front_script_kinds(): iterable {
+		foreach ( array( 'native-php', 'native-twig', 'native-react', 'acf-php', 'acf-twig' ) as $kind ) {
+			yield $kind => array( $kind, explode( '-', $kind )[1] );
+		}
+	}
+
+	/**
+	 * Skouerr_Block::render() enqueues dist/script.js: block.json must not load it a second time.
+	 */
+	#[DataProvider( 'front_script_kinds' )]
+	public function test_front_script_is_not_declared_twice( string $kind, string $engine ): void {
+		$files = ( new BlockScaffold() )->files( SKOUERR_CLI_PATH . '/templates/block/' . $kind, $engine, self::BLOCK );
+
+		self::assertStringNotContainsString( 'dist/script.js', $files['hero.block.json'] );
+	}
+
+	public function test_interactive_context_comes_from_the_attributes(): void {
+		$files = ( new BlockScaffold() )->files( SKOUERR_CLI_PATH . '/templates/block/interactive-php', 'php', self::BLOCK );
+
+		self::assertStringContainsString( 'wp_interactivity_data_wp_context(', $files['hero.controller.php'] );
+		self::assertStringContainsString( '$attributes', $files['hero.controller.php'] );
+		self::assertStringNotContainsString( 'data-wp-context=', $files['hero.template.php'] );
+		self::assertStringContainsString( "esc_html_e('Toggle', 'acme')", $files['hero.template.php'] );
+	}
 }

@@ -19,10 +19,10 @@ If `wp` needs a path or a container (DDEV, Lando, Docker), use the project's usu
 ## Rules
 
 1. Always pass `--format=json` and read `ok`, `files`, `warnings`, `next_steps`.
-2. Preview with `--dry-run`, or `--format=patch` to show the user a diff, then run for real.
-3. Exit code 2 (`invalid_input`): fix the parameter named in `error.details`. Choices, if any, are in `error.details.choices`.
+2. Preview with `--dry-run`, or `--format=patch` to show the user a diff (paths relative to the Git repository root: `git apply` from there), then run for real.
+3. Exit code 2 (`invalid_input`): fix the parameter named in `error.details`. Allowed values are in `error.details.parameter.enum` (or `error.details.choices` for items picked from a list).
 4. Exit code 3 (`conflict`): the file exists. Ask the user before re-running with `--force`.
-5. `save:template` / `save:pattern`: pass `--delete` only if the user wants the database copy moved to the trash.
+5. `save:template` / `save:pattern`: pass `--delete` only if the user wants the database copy moved to the trash. A synced pattern still referenced by a `wp:block` is never trashed.
 6. Run the `next_steps` that make sense (asset build, `wp rewrite flush`).
 
 ## Common tasks
@@ -61,6 +61,10 @@ wp skouerr save:template --template=single --delete --format=json
 wp skouerr save:pattern --pattern=hero-home --format=json
 wp skouerr save:styles --dry-run --format=json
 wp skouerr save:navigation --list --format=json
+
+# Update inc/core (show the diff first; never --force without the user's go-ahead).
+wp skouerr update:core --format=patch
+wp skouerr update:core --yes --format=json
 ```
 
 If a `Deprecated:` line precedes the JSON (WP-CLI 2.12 on PHP 8.4+), parse from the first line starting with `{`.

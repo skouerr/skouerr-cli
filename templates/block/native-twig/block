@@ -10,7 +10,6 @@
   "style": "file:./dist/style.css",
   "viewStyle": "file:./dist/style.css",
   "editorStyle": "file:./dist/style.css",
-  "viewScript": "file:./dist/script.js",
   "editorScript": "file:./%SK_BLOCK_NAME%.register.js",
   "attributes": {},
   "supports": {}

@@ -25,6 +25,13 @@ use WP_Post;
 abstract class AbstractSaveCommand extends AbstractCommand {
 
 	/**
+	 * IDs of the posts moved (or, in dry-run, to move) to the trash.
+	 *
+	 * @var list<int>
+	 */
+	private array $trashed = array();
+
+	/**
 	 * Post type to export.
 	 *
 	 * @param Input $input Input.
@@ -163,22 +170,44 @@ abstract class AbstractSaveCommand extends AbstractCommand {
 		);
 		if ( $delete ) {
 			foreach ( $selected as $post ) {
+				if ( ! $this->can_trash( $post, $output ) ) {
+					continue;
+				}
 				if ( ! $output->is_dry_run() && ! wp_trash_post( $post->ID ) ) {
 					/* translators: %1$s: item type (pattern, template or navigation), %2$d: post ID. */
 					$output->warning( sprintf( __( 'Cannot move %1$s #%2$d to the trash.', 'skouerr-cli' ), $this->item_parameter(), $post->ID ) );
 					continue;
 				}
 				$output->file( 'trash', sprintf( '%s #%d (%s)', $post->post_type, $post->ID, $post->post_name ) );
+				$this->trashed[] = $post->ID;
 			}
 		} elseif ( $this->supports_delete() ) {
-			$output->warning( __( 'The database copy is kept and still overrides the theme file. Pass --delete to move it to the trash.', 'skouerr-cli' ) );
+			$output->warning( $this->kept_warning() );
 		}
 
 		$output->set( 'files', $paths );
-		$output->set( 'trashed', $delete ? array_map( static fn( WP_Post $post ): int => $post->ID, $selected ) : array() );
+		$output->set( 'trashed', $this->trashed );
 
 		/* translators: %1$d: number of items, %2$s: item type (pattern, template or navigation). */
 		return sprintf( __( '%1$d %2$s(s) saved.', 'skouerr-cli' ), count( $paths ), $this->item_parameter() );
+	}
+
+	/**
+	 * Warning shown when the database copy is kept.
+	 */
+	protected function kept_warning(): string {
+		return __( 'The database copy is kept and still overrides the theme file. Pass --delete to move it to the trash.', 'skouerr-cli' );
+	}
+
+	/**
+	 * Tells whether a saved post may go to the trash. Warns when it may not.
+	 *
+	 * @param WP_Post $post   Post.
+	 * @param Output  $output Output.
+	 */
+	protected function can_trash( WP_Post $post, Output $output ): bool {
+		unset( $post, $output );
+		return true;
 	}
 
 	/**

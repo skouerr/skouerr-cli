@@ -47,7 +47,7 @@ wp --path="$WP_PATH" post list --post_type=wp_block --post_status=any --field=ID
 # describe: valid manifest.
 out="$(wp_skouerr describe --format=json)"
 check "describe is JSON and ok" "true" "$(json_get "$out" '$d["ok"]')"
-check "describe lists 22 commands" "22" "$(json_get "$out" 'count($d["data"]["manifest"]["commands"])')"
+check "describe lists 23 commands" "23" "$(json_get "$out" 'count($d["data"]["manifest"]["commands"])')"
 
 # info.
 out="$(wp_skouerr info --format=json)"
@@ -64,6 +64,15 @@ out="$(wp_skouerr make:block --title='Hero Banner' --format=json)"
 code=$?
 check "make:block conflict exit code" "3" "$code"
 check "make:block conflict error code" "\"conflict\"" "$(json_get "$out" '$d["error"]["code"]')"
+
+# The scratch theme has no Skouerr loader: update:core refuses it.
+out="$(wp_skouerr update:core --dry-run --format=json)"
+code=$?
+if [[ -f "$THEME_DIR/inc/core/class-skouerr-loader.php" || -f "$THEME_DIR/inc/core/loader.php" ]]; then
+	check "update:core dry-run ok" "true" "$(json_get "$out" '$d["ok"]')"
+else
+	check "update:core refuses a theme without core loader" "5" "$code"
+fi
 
 # Missing parameter in non-interactive mode, exit code 2 with the parameter schema.
 out="$(wp_skouerr make:post-type --format=json)"

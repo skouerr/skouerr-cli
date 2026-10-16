@@ -84,8 +84,13 @@ final class MakeTaxonomyCommand extends AbstractCommand {
 				prompt: __( 'Post types (comma-separated)', 'skouerr-cli' )
 			),
 			new Parameter(
-				name: 'domain',
+				name: 'text-domain',
 				description: 'Text domain of the labels. Defaults to the theme text domain.',
+				pattern: Validator::TEXT_DOMAIN
+			),
+			new Parameter(
+				name: 'domain',
+				description: 'Deprecated alias of --text-domain.',
 				pattern: Validator::TEXT_DOMAIN
 			),
 			Parameter::flag( 'hierarchical', 'Hierarchical taxonomy, like categories.' ),
@@ -103,7 +108,7 @@ final class MakeTaxonomyCommand extends AbstractCommand {
 		$label      = Validator::label( ucfirst( $input->require( 'label' ) ), 'label' );
 		$plural     = Validator::label( $input->require( 'plural', $label . 's' ), 'plural' );
 		$post_types = PatternFile::list( $input->require( 'post-types' ), Validator::POST_TYPE, 'post-types' );
-		$domain     = $input->require( 'domain', Theme::text_domain( $theme ) );
+		$domain     = $input->get( 'domain' ) ?? $input->require( 'text-domain', Theme::text_domain( $theme ) );
 
 		if ( taxonomy_exists( $slug ) ) {
 			/* translators: %s: taxonomy slug. */
@@ -130,11 +135,17 @@ final class MakeTaxonomyCommand extends AbstractCommand {
 			'php'
 		);
 
-		$filesystem = new Filesystem( $directory, $output, $input->flag( 'force' ) );
-		$path       = $filesystem->write( 'taxonomies/' . $slug . '/' . $slug . '.functions.php', $contents );
+		// The taxonomies/ folder when the theme loads it, else post-types/ (older Skouerr themes load only that one).
+		$folder = 'taxonomies';
+		if ( ! Theme::loads( $directory, 'taxonomies' ) && Theme::loads( $directory, 'post-types' ) ) {
+			$folder = 'post-types';
+			$output->info( __( 'The theme loader does not load taxonomies/: the taxonomy goes in post-types/, which it loads.', 'skouerr-cli' ) );
+		}
 
-		$loader = $directory . '/inc/core/loader.php';
-		if ( ! is_file( $loader ) || ! str_contains( (string) file_get_contents( $loader ), 'taxonomies' ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		$filesystem = new Filesystem( $directory, $output, $input->flag( 'force' ) );
+		$path       = $filesystem->write( $folder . '/' . $slug . '/' . $slug . '.functions.php', $contents );
+
+		if ( ! Theme::loads( $directory, $folder ) ) {
 			$output->warning( __( 'The theme loader does not seem to load taxonomies/: require the file from functions.php.', 'skouerr-cli' ) );
 			/* translators: %1$s: taxonomy slug. */
 			$output->next_step( sprintf( __( 'Add require_once __DIR__ . \'/taxonomies/%1$s/%1$s.functions.php\'; to functions.php.', 'skouerr-cli' ), $slug ) );
@@ -148,6 +159,7 @@ final class MakeTaxonomyCommand extends AbstractCommand {
 				'label'      => $label,
 				'plural'     => $plural,
 				'post_types' => $post_types,
+				'folder'     => $folder,
 				'file'       => $path,
 			)
 		);

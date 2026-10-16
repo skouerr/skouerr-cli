@@ -9,6 +9,7 @@
 namespace Skouerr\Cli\Command;
 
 use Skouerr\Cli\Console\Input;
+use Skouerr\Cli\Console\Output;
 use Skouerr\Cli\Console\Parameter;
 use Skouerr\Cli\Scaffold\PatternFile;
 use Skouerr\Cli\Support\Validator;
@@ -106,6 +107,75 @@ final class SavePatternCommand extends AbstractSaveCommand {
 			),
 			$post->post_content
 		);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function kept_warning(): string {
+		return __( 'The synced pattern stays in the database: blocks that reference it (wp:block "ref") keep using it. The theme file is a separate, unsynced pattern.', 'skouerr-cli' );
+	}
+
+	/**
+	 * A synced pattern still referenced by a wp:block is never trashed: the references would break.
+	 *
+	 * @param WP_Post $post   Pattern.
+	 * @param Output  $output Output.
+	 */
+	protected function can_trash( WP_Post $post, Output $output ): bool {
+		$references = self::references( $post->ID );
+		if ( empty( $references ) ) {
+			return true;
+		}
+		$output->warning(
+			sprintf(
+				/* translators: %1$d: pattern ID, %2$s: list of posts and files. */
+				__( 'Pattern #%1$d is not moved to the trash: it is still referenced by %2$s.', 'skouerr-cli' ),
+				$post->ID,
+				implode( ', ', $references )
+			)
+		);
+		return false;
+	}
+
+	/**
+	 * Posts and theme files referencing a synced pattern (`<!-- wp:block {"ref":ID} /-->`).
+	 *
+	 * @param int $id Pattern ID.
+	 * @return list<string> "#ID" for posts, relative paths for theme files.
+	 */
+	public static function references( int $id ): array {
+		global $wpdb;
+		$pattern = '/"ref":' . $id . '(?![0-9])/';
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-off CLI query.
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT ID, post_content FROM {$wpdb->posts} WHERE post_type <> 'revision' AND post_status <> 'trash' AND ID <> %d AND post_content LIKE %s",
+				$id,
+				'%' . $wpdb->esc_like( '"ref":' . $id ) . '%'
+			)
+		);
+
+		$references = array();
+		foreach ( (array) $rows as $row ) {
+			if ( 1 === preg_match( $pattern, (string) $row->post_content ) ) {
+				$references[] = '#' . (int) $row->ID;
+			}
+		}
+
+		foreach ( array_unique( array( get_stylesheet_directory(), get_template_directory() ) ) as $theme ) {
+			foreach ( array( 'templates', 'parts', 'patterns' ) as $folder ) {
+				// No GLOB_BRACE: musl (Alpine) does not support it.
+				$files = array_merge( (array) glob( $theme . '/' . $folder . '/*.html' ), (array) glob( $theme . '/' . $folder . '/*.php' ) );
+				foreach ( $files as $file ) {
+					if ( is_string( $file ) && 1 === preg_match( $pattern, (string) file_get_contents( $file ) ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+						$references[] = substr( $file, strlen( $theme ) + 1 );
+					}
+				}
+			}
+		}
+		return $references;
 	}
 
 	/**

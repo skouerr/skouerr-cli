@@ -19,8 +19,8 @@ use Skouerr\Cli\Console\Parameter;
  *
  * Each ability runs the same command code as WP-CLI, in non-interactive JSON
  * mode, so REST clients and MCP agents get the same contract as `--format=json`.
- * Commands that download code or run programs (make:theme, import:block,
- * agent:install) stay CLI-only.
+ * Commands that download or replace code, or run programs (make:theme,
+ * import:block, agent:install, update:core) stay CLI-only.
  */
 final class Abilities {
 
@@ -28,7 +28,7 @@ final class Abilities {
 	public const string CATEGORY = 'skouerr';
 
 	/** Commands never exposed as abilities. */
-	private const array CLI_ONLY = array( 'list', 'describe', 'make:theme', 'import:block', 'agent:install' );
+	private const array CLI_ONLY = array( 'list', 'describe', 'make:theme', 'import:block', 'agent:install', 'update:core' );
 
 	/** Common CLI options that make no sense for abilities. */
 	private const array CLI_OPTIONS = array( 'format', 'interaction' );
@@ -119,7 +119,7 @@ final class Abilities {
 				),
 			),
 			'execute_callback'    => static fn( mixed $input = null ): mixed => self::execute( $command, is_array( $input ) ? $input : array() ),
-			'permission_callback' => static fn(): bool => self::can_run( $command ),
+			'permission_callback' => static fn(): bool|\WP_Error => self::permission( $command ),
 			'meta'                => array(
 				'show_in_rest' => true,
 				'mcp'          => array( 'public' => true ),
@@ -162,6 +162,8 @@ final class Abilities {
 			'type'                 => 'object',
 			'properties'           => $properties,
 			'additionalProperties' => false,
+			// Lets clients call abilities without parameters (e.g. skouerr/info) with no input at all.
+			'default'              => array(),
 		);
 		if ( ! empty( $required ) ) {
 			$schema['required'] = $required;
@@ -216,6 +218,25 @@ final class Abilities {
 			);
 		}
 		return $document;
+	}
+
+	/**
+	 * Permission check of an ability, with the reason of a refusal.
+	 *
+	 * @param AbstractCommand $command Command.
+	 */
+	public static function permission( AbstractCommand $command ): bool|\WP_Error {
+		if ( self::can_run( $command ) ) {
+			return true;
+		}
+		if ( array() !== $command->side_effects() && ( ! wp_is_file_mod_allowed( 'skouerr_cli_ability' ) || ( defined( 'DISALLOW_FILE_EDIT' ) && DISALLOW_FILE_EDIT ) ) ) {
+			return new \WP_Error(
+				'skouerr_file_edit_disabled',
+				sprintf( 'skouerr/%s writes theme files, which this site forbids (DISALLOW_FILE_EDIT or DISALLOW_FILE_MODS), even with dry-run. Run `wp skouerr %s` instead.', str_replace( ':', '-', $command->name() ), $command->name() ),
+				array( 'status' => 403 )
+			);
+		}
+		return false;
 	}
 
 	/**

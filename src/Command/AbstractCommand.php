@@ -112,7 +112,7 @@ abstract class AbstractCommand {
 		$parameters[] = new Parameter(
 			name: 'format',
 			description: 'Output format. "json" prints one JSON document on STDOUT and disables prompts.'
-				. ( $this->writes_files() ? ' "patch" prints a unified diff of the file changes (relative to the theme directory) and writes nothing.' : '' ),
+				. ( $this->writes_files() ? ' "patch" prints a unified diff of the file changes and writes nothing. Paths are relative to the Git repository root (theme directory outside a repository): apply it with `git apply` from that root.' : '' ),
 			default: 'text',
 			options: $formats
 		);

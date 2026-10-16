@@ -98,4 +98,39 @@ final class FilesystemTest extends TestCase {
 		sort( $paths );
 		self::assertSame( array( $root . '/blocks/x/a.txt', $root . '/blocks/x/src/b.txt' ), $paths );
 	}
+
+	public function test_repository_root(): void {
+		$repository = $this->temp_directory();
+		mkdir( $repository . '/.git' );
+		mkdir( $repository . '/web/app/themes/acme', 0755, true );
+
+		self::assertSame( $repository, Filesystem::repository_root( $repository . '/web/app/themes/acme' ) );
+		self::assertSame( $repository, Filesystem::repository_root( $repository ) );
+	}
+
+	public function test_patch_paths_are_relative_to_the_repository(): void {
+		$repository = $this->temp_directory();
+		mkdir( $repository . '/.git' );
+		$theme = $repository . '/web/app/themes/acme';
+		mkdir( $theme, 0755, true );
+
+		$writer = new BufferWriter();
+		$output = new Output( $writer, 'test', false, false, true );
+		( new Filesystem( $theme, $output ) )->write( 'blocks/hero/hero.block.json', '{}' );
+		$output->success( 'done' );
+
+		self::assertStringContainsString( '+++ b/web/app/themes/acme/blocks/hero/hero.block.json', $writer->stdout );
+		self::assertFileDoesNotExist( $theme . '/blocks/hero/hero.block.json' );
+	}
+
+	public function test_patch_paths_outside_a_repository(): void {
+		$theme = $this->temp_directory();
+		if ( null !== Filesystem::repository_root( $theme ) ) {
+			self::markTestSkipped( 'The temporary directory is inside a Git repository.' );
+		}
+
+		$filesystem = new Filesystem( $theme, new Output( new BufferWriter(), 'test', false, false, true ) );
+
+		self::assertSame( 'blocks/hero/hero.block.json', $filesystem->patch_path( $theme . '/blocks/hero/hero.block.json' ) );
+	}
 }

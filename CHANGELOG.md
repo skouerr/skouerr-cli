@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.1.0 — 2026-10-15
+
+Nouvelle commande `update:core` et corrections issues de la recette sur un projet Bedrock (Glen Moray).
+
+### Ajouts
+
+- `update:core` : met à jour `inc/core/` avec le cœur du starter theme livré dans `templates/core/` (version 2.0.0 : compatible PHP 8.5, sans `Skouerr_Mail`). Les fichiers inchangés sont reconnus par le manifeste `inc/core/skouerr-core.json` ou l'historique du starter ; les fichiers modifiés dans le projet ne sont remplacés qu'avec `--force`. Un fichier retiré du cœur est supprimé avec sa ligne `require` de `functions.php`. Réservée à la ligne de commande.
+- `bin/sync-core.php` : copie le cœur d'un starter theme dans la CLI et calcule son historique.
+
+### Corrections
+
+- `--format=patch` : chemins relatifs à la racine du dépôt Git qui contient le thème. Sous Bedrock, `git apply` ignorait sans erreur les chemins relatifs au thème.
+- `docs/` est de nouveau livré dans le paquet : les liens du README et du CHANGELOG fonctionnent.
+- `make:block-style` : `"styles"` reste un objet JSON (il devenait `[]`), et une étape suivante rappelle que WordPress n'enregistre pas un style vide.
+- `make:block` : plus de `viewScript` (natif, Twig, React) ni de `script` (ACF) sur `dist/script.js`. `Skouerr_Block::render()` charge déjà ce fichier : il était chargé deux fois, et la valeur ACF sans `file:` n'était pas un chemin.
+- `make:block --type=interactive` : le contexte `data-wp-context` reprend les attributs du bloc (`wp_interactivity_data_wp_context()`), le libellé du bouton est traduisible.
+- `make:block --template=react` : avertissement quand le thème compile avec skouerr-scripts, qui ne compile pas `*.editor.js`.
+- `make:block --fields` : le groupe ACF va dans le point de sauvegarde ACF (`acf/settings/save_json`) quand il est dans le thème, sinon dans `acf-json/`.
+- `make:taxonomy` : si le loader du thème ne charge que `post-types/`, la taxonomie y est écrite et elle est chargée.
+- `make:post-type`, `make:taxonomy` : option `--text-domain` comme `make:block` (`--domain` reste un alias).
+- `info` : `is_skouerr` reconnaît `inc/core/class-skouerr-loader.php`. Ajout de `integrations.interactivity` et `content.taxonomies`.
+- `agent:install` : l'option `--path`, interceptée par WP-CLI, devient `--dir`. Par défaut, les fichiers vont à la racine du dépôt Git qui contient le thème.
+- `save:pattern` : un pattern synchronisé encore référencé par un `wp:block` (contenus ou fichiers du thème) n'est jamais mis à la corbeille. Le message sur la copie conservée est exact pour les patterns.
+- Abilities : `skouerr/info` et `skouerr/list-blocks` s'exécutent sans entrée. Refus explicite (`skouerr_file_edit_disabled`) quand `DISALLOW_FILE_EDIT` ou `DISALLOW_FILE_MODS` interdit l'écriture.
+- Documentation : `error.details.parameter.enum`, `--theme` non disponible sur `save:*`, résumé de `make:block` à jour.
+
 ## 2.0.0 — 2026-10-15
 
 Réécriture complète. Voir [docs/SECURITY-AUDIT.md](docs/SECURITY-AUDIT.md) pour le détail des failles corrigées.

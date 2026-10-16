@@ -77,10 +77,15 @@ final class MakePostTypeCommand extends AbstractCommand {
 				prompt: __( 'Plural label', 'skouerr-cli' )
 			),
 			new Parameter(
-				name: 'domain',
+				name: 'text-domain',
 				description: 'Text domain of the labels. Defaults to the theme text domain.',
 				pattern: Validator::TEXT_DOMAIN,
 				prompt: __( 'Text domain', 'skouerr-cli' )
+			),
+			new Parameter(
+				name: 'domain',
+				description: 'Deprecated alias of --text-domain.',
+				pattern: Validator::TEXT_DOMAIN
 			),
 			new Parameter(
 				name: 'icon',
@@ -102,7 +107,7 @@ final class MakePostTypeCommand extends AbstractCommand {
 		$slug      = strtolower( $input->require( 'slug' ) );
 		$label     = Validator::label( ucfirst( $input->require( 'label' ) ), 'label' );
 		$plural    = Validator::label( $input->require( 'plural', $label . 's' ), 'plural' );
-		$domain    = $input->require( 'domain', Theme::text_domain( $theme ) );
+		$domain    = $input->get( 'domain' ) ?? $input->require( 'text-domain', Theme::text_domain( $theme ) );
 		$icon      = Dashicons::normalize( $input->require( 'icon' ) );
 
 		if ( post_type_exists( $slug ) ) {
