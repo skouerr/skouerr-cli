@@ -52,6 +52,7 @@ final class Plugin {
 			new Command\SavePatternCommand(),
 			new Command\SaveStylesCommand(),
 			new Command\SaveNavigationCommand(),
+			new Command\UpdateCoreCommand(),
 		);
 	}
 

@@ -48,7 +48,7 @@ final class AgentInstallCommand extends AbstractCommand {
 	public function examples(): array {
 		return array(
 			'skouerr agent:install',
-			'skouerr agent:install --path=/var/www/project --force',
+			'skouerr agent:install --dir=/var/www/project --force',
 		);
 	}
 
@@ -58,8 +58,8 @@ final class AgentInstallCommand extends AbstractCommand {
 	protected function parameters(): array {
 		return array(
 			new Parameter(
-				name: 'path',
-				description: 'Project directory (usually the repository root). Defaults to the theme directory.'
+				name: 'dir',
+				description: 'Project directory. Defaults to the Git repository holding the theme, else the theme directory. (--path is taken by WP-CLI.)'
 			),
 			Theme::parameter(),
 		);
@@ -70,11 +70,11 @@ final class AgentInstallCommand extends AbstractCommand {
 	 */
 	protected function handle( Input $input, Output $output ): string {
 		$theme     = Theme::directory( $input->get( 'theme' ) );
-		$directory = $input->get( 'path' ) ?? $theme;
+		$directory = $input->get( 'dir' ) ?? Filesystem::repository_root( $theme ) ?? $theme;
 		$real      = realpath( $directory );
 		if ( false === $real || ! is_dir( $real ) ) {
 			/* translators: %s: directory path. */
-			throw CliException::invalid( sprintf( __( 'Directory %s not found.', 'skouerr-cli' ), $directory ), array( 'parameter' => 'path' ) );
+			throw CliException::invalid( sprintf( __( 'Directory %s not found.', 'skouerr-cli' ), $directory ), array( 'parameter' => 'dir' ) );
 		}
 
 		$skill = (string) file_get_contents( SKOUERR_CLI_PATH . '/skills/skouerr-cli/SKILL.md' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents

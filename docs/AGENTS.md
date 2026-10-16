@@ -43,7 +43,7 @@ On failure, `ok` is `false` and `error` explains what to fix:
 }
 ```
 
-When a value must be picked from a list (library item, template in the database), `error.details.choices` lists the valid values.
+Allowed values of an option are in `error.details.parameter.enum`. When a value must be picked from a list (library item, template in the database), `error.details.choices` lists the valid values.
 
 ## Exit codes
 
@@ -78,6 +78,7 @@ Rules:
 | `list` | List the commands | — |
 | `describe [<command>]` | Machine-readable manifest | — |
 | `info` | Theme context | — |
+| `update:core` | Update inc/core to the core shipped with the CLI; files changed in the project need --force | filesystem |
 | `agent:install` | Install this skill and an AGENTS.md in the project | filesystem |
 | `make:theme` | Download and install the starter theme | network, filesystem, process, database |
 | `make:block` | Create a block: `--type=native\|acf\|interactive`, `--template=php\|twig\|react`, `--attributes` (JSON object), `--fields` (ACF, JSON array) | filesystem |
@@ -100,11 +101,11 @@ Rules:
 
 ## Review before writing
 
-`--format=patch` prints a unified diff of every file change, relative to the theme directory, and writes nothing. Show it to the user, then apply it with `git apply` from the theme directory, or run the command again without `--format=patch`.
+`--format=patch` prints a unified diff of every file change and writes nothing. Paths are relative to the root of the Git repository holding the theme (to the theme directory outside a repository). Show it to the user, then apply it with `git apply` from that root, or run the command again without `--format=patch`.
 
 ## WordPress abilities
 
-On WordPress 6.9+, the same commands are registered as abilities `skouerr/<command>` (`make:block` → `skouerr/make-block`), available through the REST API (`wp-abilities/v1`) and the WordPress MCP adapter. Input is an object with the option names (`{"title": "Hero", "type": "acf", "dry-run": true}`); output is the `--format=json` document; failures are `WP_Error` with code `skouerr_<error.code>`. `make:theme`, `import:block` and `agent:install` are CLI-only.
+On WordPress 6.9+, the same commands are registered as abilities `skouerr/<command>` (`make:block` → `skouerr/make-block`), available through the REST API (`wp-abilities/v1`) and the WordPress MCP adapter. Input is an object with the option names (`{"title": "Hero", "type": "acf", "dry-run": true}`); output is the `--format=json` document; failures are `WP_Error` with code `skouerr_<error.code>`. `make:theme`, `import:block`, `agent:install` and `update:core` are CLI-only. Abilities that write files need `edit_themes`: with `DISALLOW_FILE_EDIT` (Bedrock default) they fail with `skouerr_file_edit_disabled`, even with `dry-run`; use WP-CLI then.
 
 ## WP-CLI 2.12 and PHP 8.4+
 

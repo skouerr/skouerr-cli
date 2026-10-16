@@ -37,7 +37,7 @@ final class MakeBlockCommand extends AbstractCommand {
 	 * {@inheritDoc}
 	 */
 	public function summary(): string {
-		return 'Create a block in the theme (native or ACF, PHP or Twig template).';
+		return 'Create a block in the theme (native, ACF or Interactivity API; PHP or Twig template, or React editor).';
 	}
 
 	/**
@@ -120,7 +120,7 @@ final class MakeBlockCommand extends AbstractCommand {
 			),
 			new Parameter(
 				name: 'fields',
-				description: 'ACF fields as a JSON array, written to acf-json/ (ACF blocks only): [{"name": "title", "type": "text", "label": "Title"}]. Any ACF field setting is accepted; "sub_fields" for repeaters and groups.'
+				description: 'ACF fields as a JSON array, written to the ACF save point when it is inside the theme, else acf-json/ (ACF blocks only): [{"name": "title", "type": "text", "label": "Title"}]. Any ACF field setting is accepted; "sub_fields" for repeaters and groups.'
 			),
 			Theme::parameter(),
 		);
@@ -158,7 +158,7 @@ final class MakeBlockCommand extends AbstractCommand {
 			throw CliException::invalid( __( '--fields only applies to ACF blocks (--type=acf). Use --attributes for other blocks.', 'skouerr-cli' ), array( 'parameter' => 'fields' ) );
 		}
 
-		$this->warn( $output, $type, $template, $prefix, $icon );
+		$this->warn( $output, $type, $template, $prefix, $icon, $directory );
 
 		/* translators: %1$s: block title, %2$s: block name, %3$s: block type, %4$s: template engine, %5$s: dashicon. */
 		$summary = sprintf( __( '%1$s (%2$s) — %3$s, %4$s template, icon %5$s', 'skouerr-cli' ), $title, $slug, $type, $template, $icon );
@@ -181,7 +181,7 @@ final class MakeBlockCommand extends AbstractCommand {
 			$files[ 'blocks/' . $name . '/' . $path ] = $contents;
 		}
 		if ( ! empty( $fields ) ) {
-			$files[ 'acf-json/' . BlockSchema::group_key( $slug ) . '.json' ] = BlockScaffold::encode( BlockSchema::field_group( $slug, $title, $fields ) );
+			$files[ Theme::acf_json_folder( $directory ) . '/' . BlockSchema::group_key( $slug ) . '.json' ] = BlockScaffold::encode( BlockSchema::field_group( $slug, $title, $fields ) );
 		}
 
 		$filesystem = new Filesystem( $directory, $output, $input->flag( 'force' ) );
@@ -216,13 +216,14 @@ final class MakeBlockCommand extends AbstractCommand {
 	/**
 	 * Warns about missing integrations.
 	 *
-	 * @param Output $output   Output.
-	 * @param string $type     Block type.
-	 * @param string $template Template engine.
-	 * @param string $prefix   Block namespace.
-	 * @param string $icon     Icon.
+	 * @param Output $output    Output.
+	 * @param string $type      Block type.
+	 * @param string $template  Template engine.
+	 * @param string $prefix    Block namespace.
+	 * @param string $icon      Icon.
+	 * @param string $directory Theme directory.
 	 */
-	private function warn( Output $output, string $type, string $template, string $prefix, string $icon ): void {
+	private function warn( Output $output, string $type, string $template, string $prefix, string $icon, string $directory ): void {
 		if ( ! Dashicons::exists( $icon ) ) {
 			/* translators: %s: dashicon name. */
 			$output->warning( sprintf( __( 'Unknown dashicon "%s".', 'skouerr-cli' ), $icon ) );
@@ -235,6 +236,10 @@ final class MakeBlockCommand extends AbstractCommand {
 		}
 		if ( 'twig' === $template && ! class_exists( '\Timber\Timber' ) ) {
 			$output->warning( __( 'Timber is not installed: Twig templates will not render.', 'skouerr-cli' ) );
+		}
+		$package = $directory . '/package.json';
+		if ( 'react' === $template && is_file( $package ) && str_contains( (string) file_get_contents( $package ), '"skouerr-scripts"' ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+			$output->warning( __( 'skouerr-scripts only builds src/<name>.script.js: without a JSX entry for the editor file, dist/editor.js is missing and the block cannot be inserted.', 'skouerr-cli' ) );
 		}
 	}
 }

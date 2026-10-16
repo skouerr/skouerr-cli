@@ -1,16 +1,15 @@
-# French translation of Skouerr CLI.
-# Copyright (C) 2026 R2
-# This file is distributed under the same license as the Skouerr CLI plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Skouerr CLI 2.0.0\n"
+"Project-Id-Version: Skouerr CLI 2.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/skouerr-cli\n"
 "Last-Translator: R2 <contact@r2.fr>\n"
 "Language-Team: French\n"
-"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-15T16:12:33+00:00\n"
+"PO-Revision-Date: 2026-10-15T16:12:33+00:00\n"
+"Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Domain: skouerr-cli\n"
 
@@ -40,45 +39,45 @@ msgid "https://r2.fr"
 msgstr "https://r2.fr"
 
 #. translators: %s: item type (pattern, template or navigation).
-#: src/Command/AbstractSaveCommand.php:112
+#: src/Command/AbstractSaveCommand.php:119
 #, php-format
 msgid "Select a %s"
 msgstr "Sélectionnez un élément %s"
 
 #. translators: %1$d: number of items, %2$s: item type (pattern, template or navigation).
-#: src/Command/AbstractSaveCommand.php:141
+#: src/Command/AbstractSaveCommand.php:148
 #, php-format
 msgid "%1$d %2$s(s) in the database."
 msgstr "%1$d %2$s(s) dans la base de données."
 
 #. translators: %s: item type (pattern, template or navigation).
-#: src/Command/AbstractSaveCommand.php:146
+#: src/Command/AbstractSaveCommand.php:153
 #, php-format
 msgid "No %s found in the database."
 msgstr "Aucun élément %s trouvé dans la base de données."
 
-#: src/Command/AbstractSaveCommand.php:162
+#: src/Command/AbstractSaveCommand.php:169
 msgid "Move the database copy to the trash so the theme file is used?"
 msgstr "Mettre la copie en base à la corbeille pour utiliser le fichier du thème ?"
 
 #. translators: %1$s: item type (pattern, template or navigation), %2$d: post ID.
-#: src/Command/AbstractSaveCommand.php:168
+#: src/Command/AbstractSaveCommand.php:178
 #, php-format
 msgid "Cannot move %1$s #%2$d to the trash."
 msgstr "Impossible de mettre %1$s #%2$d à la corbeille."
 
-#: src/Command/AbstractSaveCommand.php:174
+#: src/Command/AbstractSaveCommand.php:199
 msgid "The database copy is kept and still overrides the theme file. Pass --delete to move it to the trash."
 msgstr "La copie en base est conservée et remplace toujours le fichier du thème. Utilisez --delete pour la mettre à la corbeille."
 
 #. translators: %1$d: number of items, %2$s: item type (pattern, template or navigation).
-#: src/Command/AbstractSaveCommand.php:181
+#: src/Command/AbstractSaveCommand.php:192
 #, php-format
 msgid "%1$d %2$s(s) saved."
 msgstr "%1$d %2$s(s) enregistré(s)."
 
 #. translators: %1$s: item type (Pattern, Template or Navigation), %2$s: slug or ID.
-#: src/Command/AbstractSaveCommand.php:210
+#: src/Command/AbstractSaveCommand.php:239
 #, php-format
 msgid "%1$s \"%2$s\" not found in the database."
 msgstr "%1$s « %2$s » introuvable dans la base de données."
@@ -206,7 +205,7 @@ msgid "No Skouerr library configured (filter \"skouerr_import_libraries\")."
 msgstr "Aucune bibliothèque Skouerr configurée (filtre « skouerr_import_libraries »)."
 
 #. translators: %s: theme slug.
-#: src/Command/InfoCommand.php:99
+#: src/Command/InfoCommand.php:101
 #, php-format
 msgid "Theme %s."
 msgstr "Thème %s."
@@ -264,7 +263,7 @@ msgid "Block namespace"
 msgstr "Espace de noms du bloc"
 
 #: src/Command/MakeBlockCommand.php:104
-#: src/Command/MakePostTypeCommand.php:90
+#: src/Command/MakePostTypeCommand.php:95
 #: src/Command/MakeVariationCommand.php:85
 msgid "Dashicon"
 msgstr "Dashicon"
@@ -312,21 +311,21 @@ msgid "Block %s created."
 msgstr "Bloc %s créé."
 
 #. translators: %s: dashicon name.
-#: src/Command/MakeBlockCommand.php:228
-#: src/Command/MakePostTypeCommand.php:114
+#: src/Command/MakeBlockCommand.php:229
+#: src/Command/MakePostTypeCommand.php:119
 #, php-format
 msgid "Unknown dashicon \"%s\"."
 msgstr "Dashicon « %s » inconnu."
 
-#: src/Command/MakeBlockCommand.php:231
+#: src/Command/MakeBlockCommand.php:232
 msgid "The \"core\" namespace is reserved for WordPress core blocks."
 msgstr "L’espace de noms « core » est réservé aux blocs natifs de WordPress."
 
-#: src/Command/MakeBlockCommand.php:234
+#: src/Command/MakeBlockCommand.php:235
 msgid "ACF Pro is not active: ACF blocks will not be registered."
 msgstr "ACF Pro n’est pas actif : les blocs ACF ne seront pas enregistrés."
 
-#: src/Command/MakeBlockCommand.php:237
+#: src/Command/MakeBlockCommand.php:238
 msgid "Timber is not installed: Twig templates will not render."
 msgstr "Timber n’est pas installé : les templates Twig ne s’afficheront pas."
 
@@ -367,13 +366,13 @@ msgid "Text domain"
 msgstr "Domaine de traduction"
 
 #. translators: %s: post type slug.
-#: src/Command/MakePostTypeCommand.php:110
+#: src/Command/MakePostTypeCommand.php:115
 #, php-format
 msgid "A post type \"%s\" is already registered."
 msgstr "Un type de contenu « %s » est déjà enregistré."
 
 #. translators: %s: post type slug.
-#: src/Command/MakePostTypeCommand.php:145
+#: src/Command/MakePostTypeCommand.php:150
 #, php-format
 msgid "Post type %s created."
 msgstr "Type de contenu %s créé."
@@ -395,13 +394,13 @@ msgid "The block-style template is not valid JSON."
 msgstr "Le modèle block-style n’est pas un JSON valide."
 
 #. translators: %s: style name.
-#: src/Command/MakeStyleCommand.php:144
+#: src/Command/MakeStyleCommand.php:152
 #, php-format
 msgid "Block style %s created."
 msgstr "Style de bloc %s créé."
 
 #. translators: %s: style name.
-#: src/Command/MakeStyleCommand.php:146
+#: src/Command/MakeStyleCommand.php:154
 #, php-format
 msgid "Style variation %s created."
 msgstr "Variation de style %s créée."
@@ -415,23 +414,23 @@ msgid "Post types (comma-separated)"
 msgstr "Types de contenu (séparés par des virgules)"
 
 #. translators: %s: taxonomy slug.
-#: src/Command/MakeTaxonomyCommand.php:110
+#: src/Command/MakeTaxonomyCommand.php:115
 #, php-format
 msgid "A taxonomy \"%s\" is already registered."
 msgstr "Une taxonomie « %s » est déjà enregistrée."
 
-#: src/Command/MakeTaxonomyCommand.php:138
+#: src/Command/MakeTaxonomyCommand.php:149
 msgid "The theme loader does not seem to load taxonomies/: require the file from functions.php."
 msgstr "Le chargeur du thème ne semble pas charger taxonomies/ : incluez le fichier depuis functions.php."
 
 #. translators: %1$s: taxonomy slug.
-#: src/Command/MakeTaxonomyCommand.php:140
+#: src/Command/MakeTaxonomyCommand.php:151
 #, php-format
 msgid "Add require_once __DIR__ . '/taxonomies/%1$s/%1$s.functions.php'; to functions.php."
 msgstr "Ajoutez require_once __DIR__ . '/taxonomies/%1$s/%1$s.functions.php'; à functions.php."
 
 #. translators: %s: taxonomy slug.
-#: src/Command/MakeTaxonomyCommand.php:156
+#: src/Command/MakeTaxonomyCommand.php:168
 #, php-format
 msgid "Taxonomy %s created."
 msgstr "Taxonomie %s créée."
@@ -777,7 +776,7 @@ msgstr "Impossible de créer un dossier temporaire."
 
 #. translators: %s: directory path.
 #: src/Support/Archive.php:194
-#: src/Support/Filesystem.php:286
+#: src/Support/Filesystem.php:325
 #, php-format
 msgid "Cannot create directory %s."
 msgstr "Impossible de créer le dossier %s."
@@ -815,13 +814,13 @@ msgid "Cannot delete %s."
 msgstr "Impossible de supprimer %s."
 
 #. translators: %s: file path.
-#: src/Support/Filesystem.php:241
+#: src/Support/Filesystem.php:280
 #, php-format
 msgid "Cannot read %s."
 msgstr "Impossible de lire %s."
 
 #. translators: %1$s: path, %2$s: root directory.
-#: src/Support/Filesystem.php:270
+#: src/Support/Filesystem.php:309
 #, php-format
 msgid "Path %1$s resolves outside of %2$s."
 msgstr "Le chemin %1$s pointe en dehors de %2$s."
@@ -901,3 +900,103 @@ msgstr "Le paramètre --%s ne peut pas être vide."
 #, php-format
 msgid "Parameter --%s is limited to 100 characters."
 msgstr "Le paramètre --%s est limité à 100 caractères."
+
+#: src/Command/MakeBlockCommand.php:242
+msgid "skouerr-scripts only builds src/<name>.script.js: without a JSX entry for the editor file, dist/editor.js is missing and the block cannot be inserted."
+msgstr "skouerr-scripts ne compile que src/<nom>.script.js : sans entrée JSX pour le fichier éditeur, dist/editor.js manque et le bloc ne peut pas être inséré."
+
+#: src/Command/MakeStyleCommand.php:137
+msgid "Add at least one property to \"styles\": WordPress does not register a block style whose styles are empty."
+msgstr "Ajoutez au moins une propriété dans « styles » : WordPress n’enregistre pas un style de bloc dont les styles sont vides."
+
+#: src/Command/MakeTaxonomyCommand.php:142
+msgid "The theme loader does not load taxonomies/: the taxonomy goes in post-types/, which it loads."
+msgstr "Le chargeur du thème ne charge pas taxonomies/ : la taxonomie est placée dans post-types/, qu’il charge."
+
+#: src/Command/SavePatternCommand.php:116
+msgid "The synced pattern stays in the database: blocks that reference it (wp:block \"ref\") keep using it. The theme file is a separate, unsynced pattern."
+msgstr "La composition synchronisée reste en base : les blocs qui la référencent (wp:block « ref ») continuent de l’utiliser. Le fichier du thème est une composition distincte, non synchronisée."
+
+#. translators: %1$d: pattern ID, %2$s: list of posts and files.
+#: src/Command/SavePatternCommand.php:133
+#, php-format
+msgid "Pattern #%1$d is not moved to the trash: it is still referenced by %2$s."
+msgstr "La composition n° %1$d n’est pas mise à la corbeille : elle est encore référencée par %2$s."
+
+#. translators: %s: theme directory.
+#: src/Command/UpdateCoreCommand.php:80
+#, php-format
+msgid "%s is not a Skouerr theme: no core loader in inc/core/."
+msgstr "%s n’est pas un thème Skouerr : aucun chargeur dans inc/core/."
+
+#: src/Command/UpdateCoreCommand.php:88
+msgid "The core files shipped with the CLI are missing."
+msgstr "Les fichiers du cœur livrés avec la CLI sont introuvables."
+
+#. translators: %1$s: old core file, %2$s: current core file.
+#: src/Command/UpdateCoreCommand.php:99
+#, php-format
+msgid "This theme uses an older Skouerr core layout (inc/core/%1$s, now %2$s): update:core does not migrate it. Port the theme by hand from the starter theme."
+msgstr "Ce thème utilise une ancienne organisation du cœur Skouerr (inc/core/%1$s, désormais %2$s) : update:core ne la migre pas. Portez le thème à la main depuis le starter theme."
+
+#. translators: %s: file path.
+#: src/Command/UpdateCoreCommand.php:140
+#, php-format
+msgid "functions.php still loads %s in a way the CLI cannot remove: remove that line by hand, then run again."
+msgstr "functions.php charge encore %s d’une façon que la CLI ne sait pas retirer : supprimez cette ligne à la main, puis relancez."
+
+#. translators: %s: file path.
+#: src/Command/UpdateCoreCommand.php:156
+#, php-format
+msgid "Load the new core file from functions.php: require_once get_template_directory() . '/%s';"
+msgstr "Chargez le nouveau fichier du cœur depuis functions.php : require_once get_template_directory() . '/%s';"
+
+#. translators: %s: core version.
+#: src/Command/UpdateCoreCommand.php:179
+#, php-format
+msgid "Core is up to date (%s)."
+msgstr "Le cœur est à jour (%s)."
+
+#. translators: %1$d: number of files written, %2$d: number of files deleted.
+#: src/Command/UpdateCoreCommand.php:184
+#, php-format
+msgid "Write %1$d file(s) and delete %2$d file(s) in the theme?"
+msgstr "Écrire %1$d fichier(s) et supprimer %2$d fichier(s) dans le thème ?"
+
+#: src/Command/UpdateCoreCommand.php:185
+msgid "Core update aborted. Pass --yes to confirm in non-interactive mode."
+msgstr "Mise à jour du cœur annulée. Utilisez --yes pour confirmer en mode non interactif."
+
+#: src/Command/UpdateCoreCommand.php:194
+msgid "Load a page of the site and the block editor to check the theme."
+msgstr "Chargez une page du site et l’éditeur de blocs pour vérifier le thème."
+
+#. translators: %s: core version.
+#: src/Command/UpdateCoreCommand.php:203
+#, php-format
+msgid "Core updated to %s."
+msgstr "Cœur mis à jour en %s."
+
+#. translators: %s: file path.
+#: src/Command/UpdateCoreCommand.php:216
+#, php-format
+msgid "%s was changed in the project: not updated. Move the project code to inc/ (see the core filters), or review the diff with --force --format=patch and run again with --force."
+msgstr "%s a été modifié dans le projet : non mis à jour. Déplacez le code du projet dans inc/ (voir les filtres du cœur), ou relisez le diff avec --force --format=patch puis relancez avec --force."
+
+#. translators: %s: file path.
+#: src/Command/UpdateCoreCommand.php:219
+#, php-format
+msgid "%s is no longer part of the core but was changed in the project: not deleted. Run again with --force to delete it."
+msgstr "%s ne fait plus partie du cœur mais a été modifié dans le projet : non supprimé. Relancez avec --force pour le supprimer."
+
+#. translators: %1$s: class or function name, %2$s: file path.
+#: src/Command/UpdateCoreCommand.php:278
+#, php-format
+msgid "%1$s is no longer part of the core but is still used in %2$s."
+msgstr "%1$s ne fait plus partie du cœur mais est encore utilisé dans %2$s."
+
+#. translators: %1$s: core version, %2$d: number of files left as is.
+#: src/Command/UpdateCoreCommand.php:199
+#, php-format
+msgid "Core partially updated to %1$s: %2$d file(s) changed in the project left as is."
+msgstr "Cœur partiellement mis à jour en %1$s : %2$d fichier(s) modifié(s) dans le projet laissé(s) tel(s) quel(s)."

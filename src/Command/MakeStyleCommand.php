@@ -121,13 +121,21 @@ final class MakeStyleCommand extends AbstractCommand {
 				throw CliException::environment( __( 'The block-style template is not valid JSON.', 'skouerr-cli' ) );
 			}
 			$data['blockTypes'] = PatternFile::list( $input->require( 'block-types' ), Validator::BLOCK_NAME, 'block-types' );
-			$contents           = BlockScaffold::encode( $data );
-			$contents           = (string) preg_replace_callback( '/^(  )+/m', static fn( array $m ): string => str_repeat( "\t", intdiv( strlen( $m[0] ), 2 ) ), $contents );
+			// json_decode() turns the empty "styles" object into an array: keep it an object.
+			if ( empty( $data['styles'] ) ) {
+				$data['styles'] = new \stdClass();
+			}
+			$contents = BlockScaffold::encode( $data );
+			$contents = (string) preg_replace_callback( '/^(  )+/m', static fn( array $m ): string => str_repeat( "\t", intdiv( strlen( $m[0] ), 2 ) ), $contents );
 		}
 
 		$relative   = ( $this->block ? 'styles/blocks/' : 'styles/' ) . $name . '.json';
 		$filesystem = new Filesystem( $directory, $output, $input->flag( 'force' ) );
 		$path       = $filesystem->write( $relative, $contents );
+
+		if ( $this->block ) {
+			$output->next_step( __( 'Add at least one property to "styles": WordPress does not register a block style whose styles are empty.', 'skouerr-cli' ) );
+		}
 
 		$output->set(
 			'style',

@@ -1,10 +1,10 @@
 <div
 	class="block block-%SK_BLOCK_NAME%"
 	data-wp-interactive="%SK_BLOCK_SLUG%"
-	data-wp-context='{ "open": false }'
+	<?php echo $skouerr_block->get_data('context'); // Escaped by wp_interactivity_data_wp_context(). ?>
 >
 	<button type="button" data-wp-on--click="actions.toggle" data-wp-bind--aria-expanded="context.open">
-		Toggle
+		<?php esc_html_e('Toggle', '%SK_BLOCK_TEXTDOMAIN%'); ?>
 	</button>
 	<div data-wp-bind--hidden="!context.open">
 

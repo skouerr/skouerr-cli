@@ -42,6 +42,7 @@ require __DIR__ . '/skouerr-cli/skouerr-cli.php';
 | `list:blocks`, `rename:block`, `delete:block` | Gestion des blocs du thème |
 | `import:block` | Import depuis une bibliothèque Skouerr |
 | `save:template`, `save:pattern`, `save:styles`, `save:navigation` | Export vers le thème de ce qui a été fait dans l'éditeur de site |
+| `update:core` | Met à jour `inc/core/` (loader, rendu des blocs, outils de dev, setup) avec la version livrée par la CLI |
 | `agent:install` | Skill Claude Code et `AGENTS.md` dans le projet |
 
 ```bash
@@ -69,27 +70,44 @@ Options communes :
 | Option | Effet |
 |--------|-------|
 | `--format=json` | Un seul document JSON sur la sortie standard, en anglais, aucune question |
-| `--format=patch` | Diff unifié des fichiers (à appliquer avec `git apply` depuis le dossier du thème), rien n'est écrit |
+| `--format=patch` | Diff unifié des fichiers, rien n'est écrit. Chemins relatifs à la racine du dépôt Git qui contient le thème (au dossier du thème hors dépôt) : appliquer avec `git apply` depuis cette racine |
 | `--no-interaction` | Aucune question : erreur si un paramètre obligatoire manque |
 | `--yes` | Répond oui aux confirmations |
 | `--dry-run` | Affiche les fichiers qui seraient écrits, sans rien écrire |
 | `--force` | Écrase les fichiers existants (refusé par défaut) |
-| `--theme=<slug>` | Cible un autre thème installé que le thème actif |
+| `--theme=<slug>` | Cible un autre thème installé que le thème actif (sauf `save:*`, qui écrivent dans le thème enfant actif) |
 
 Les messages sont en français si le site est en français (`languages/`).
+
+## Mise à jour du cœur du thème
+
+`wp skouerr update:core` remplace les fichiers de `inc/core/` par ceux du starter theme livrés avec la CLI (`templates/core/`).
+
+- Un fichier inchangé depuis son installation est mis à jour. Il est reconnu grâce à `inc/core/skouerr-core.json` (écrit par la commande) ou à l'historique du starter (thèmes plus anciens).
+- Un fichier modifié dans le projet n'est jamais remplacé sans `--force`. Déplacer le code propre au projet dans `inc/`, avec les filtres du cœur (`skouerr_allowed_blocks`, `skouerr_scripts_port`…).
+- Un fichier retiré du cœur (`class-skouerr-mail.php`) est supprimé, et sa ligne `require` retirée de `functions.php`.
+- Les thèmes à l'ancienne organisation (`inc/core/loader.php`) ne sont pas migrés.
+
+```bash
+wp skouerr update:core --format=patch          # diff des fichiers mis à jour
+wp skouerr update:core --force --format=patch  # diff complet, fichiers modifiés compris
+wp skouerr update:core --yes
+```
+
+Mettre à jour le cœur livré : `php bin/sync-core.php /chemin/vers/skouerr-theme <version>` (copie `inc/core/`, calcule l'historique, écrit le manifeste du starter).
 
 ## Abilities API
 
 Sous WordPress 6.9 et plus, les commandes sont aussi exposées comme abilities `skouerr/*` (par exemple `skouerr/make-block`). Elles sont disponibles via l'API REST `wp-abilities/v1` et via le MCP Adapter de WordPress. Elles renvoient le même document que `--format=json`.
 
-- Les commandes qui écrivent des fichiers demandent la capacité `edit_themes`. `DISALLOW_FILE_EDIT` les désactive.
-- `make:theme`, `import:block` et `agent:install` restent réservées à la ligne de commande.
+- Les commandes qui écrivent des fichiers demandent la capacité `edit_themes`. `DISALLOW_FILE_EDIT` (actif par défaut sous Bedrock) les désactive, même en `dry-run` : l'ability renvoie alors l'erreur `skouerr_file_edit_disabled`. Passer par WP-CLI.
+- `make:theme`, `import:block`, `agent:install` et `update:core` restent réservées à la ligne de commande.
 
 ## Utilisation par un agent IA
 
 Voir [docs/AGENTS.md](docs/AGENTS.md) : format JSON, codes de sortie, workflow conseillé.
 
-`wp skouerr agent:install` installe le skill Claude Code ([skills/skouerr-cli/SKILL.md](skills/skouerr-cli/SKILL.md)) et un `AGENTS.md` dans le projet.
+`wp skouerr agent:install` installe le skill Claude Code ([skills/skouerr-cli/SKILL.md](skills/skouerr-cli/SKILL.md)) et un `AGENTS.md` dans le projet : la racine du dépôt Git qui contient le thème, sinon le thème. `--dir=<dossier>` pour en choisir un autre (`--path` est réservé par WP-CLI). Un `AGENTS.md` existant n'est jamais modifié.
 
 ## Configuration
 

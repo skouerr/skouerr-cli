@@ -3,7 +3,7 @@
  * Plugin Name:       Skouerr CLI
  * Plugin URI:        https://skouerr.dev
  * Description:       WP-CLI commands and abilities to scaffold and maintain Skouerr FSE themes. Agent-friendly: JSON output, non-interactive mode, dry-run, Abilities API.
- * Version:           2.0.0
+ * Version:           2.1.0
  * Requires at least: 6.5
  * Requires PHP:      8.3
  * Author:            R2
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SKOUERR_CLI_VERSION', '2.0.0' );
+define( 'SKOUERR_CLI_VERSION', '2.1.0' );
 define( 'SKOUERR_CLI_PATH', __DIR__ );
 
 // Both URLs can be overridden in wp-config.php.

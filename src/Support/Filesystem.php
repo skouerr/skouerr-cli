@@ -124,7 +124,7 @@ final class Filesystem {
 		foreach ( $plan as [ $absolute, $contents, $action ] ) {
 			if ( $this->output->is_patch() ) {
 				$before = 'overwrite' === $action ? (string) file_get_contents( $absolute ) : null;
-				$this->output->diff( $this->relative( $absolute ), $before, $contents );
+				$this->output->diff( $this->patch_path( $absolute ), $before, $contents );
 			} elseif ( ! $this->output->is_dry_run() ) {
 				$this->ensure_directory( dirname( $absolute ) );
 				if ( false === file_put_contents( $absolute, $contents ) ) {
@@ -159,7 +159,7 @@ final class Filesystem {
 
 		foreach ( $plan as $absolute ) {
 			if ( $this->output->is_patch() ) {
-				$this->output->diff( $this->relative( $absolute ), (string) file_get_contents( $absolute ), null );
+				$this->output->diff( $this->patch_path( $absolute ), (string) file_get_contents( $absolute ), null );
 			} elseif ( ! $this->output->is_dry_run() ) {
 				if ( ! unlink( $absolute ) ) {
 					/* translators: %s: file path. */
@@ -202,6 +202,45 @@ final class Filesystem {
 	 */
 	public function relative( string $absolute ): string {
 		return ltrim( substr( $absolute, strlen( $this->root ) ), '/' );
+	}
+
+	/**
+	 * Path written in a patch: relative to the Git repository holding the root,
+	 * or to the root itself outside a repository.
+	 *
+	 * `git apply` resolves paths from the repository root and silently skips the
+	 * ones outside the current directory: theme-relative paths would be ignored
+	 * when the theme lives in a sub-folder of the repository (Bedrock).
+	 *
+	 * @param string $absolute Absolute path inside the root.
+	 */
+	public function patch_path( string $absolute ): string {
+		$repository = self::repository_root( $this->root );
+		if ( null === $repository ) {
+			return $this->relative( $absolute );
+		}
+		return ltrim( substr( $absolute, strlen( $repository ) ), '/' );
+	}
+
+	/**
+	 * Closest directory holding a `.git` entry (folder, or file for worktrees and submodules).
+	 *
+	 * @param string $directory Directory to start from.
+	 * @return string|null Repository root, without trailing slash, or null outside a repository.
+	 */
+	public static function repository_root( string $directory ): ?string {
+		$directory = rtrim( str_replace( '\\', '/', $directory ), '/' );
+		while ( '' !== $directory ) {
+			if ( file_exists( $directory . '/.git' ) ) {
+				return $directory;
+			}
+			$parent = dirname( $directory );
+			if ( $parent === $directory ) {
+				break;
+			}
+			$directory = $parent;
+		}
+		return null;
 	}
 
 	/**

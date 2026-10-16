@@ -76,4 +76,56 @@ final class Theme {
 		$domain = (string) wp_get_theme( self::slug( $slug ) )->get( 'TextDomain' );
 		return 1 === preg_match( Validator::TEXT_DOMAIN, $domain ) ? $domain : self::slug( $slug );
 	}
+
+	/** Loader files of the Skouerr starter theme, newest first. */
+	public const array LOADERS = array( 'inc/core/loader.php', 'inc/core/class-skouerr-loader.php' );
+
+	/**
+	 * Loader file of a Skouerr theme (blocks, patterns, post types, bindings).
+	 *
+	 * @param string $directory Theme directory.
+	 * @return string|null Absolute path, or null when the theme has no Skouerr loader.
+	 */
+	public static function loader( string $directory ): ?string {
+		foreach ( self::LOADERS as $loader ) {
+			if ( is_file( $directory . '/' . $loader ) ) {
+				return $directory . '/' . $loader;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Tells whether the theme loader requires the files of a folder.
+	 *
+	 * @param string $directory Theme directory.
+	 * @param string $folder    Folder relative to the theme (e.g. "taxonomies").
+	 */
+	public static function loads( string $directory, string $folder ): bool {
+		$loader = self::loader( $directory );
+		if ( null === $loader ) {
+			return false;
+		}
+		return str_contains( (string) file_get_contents( $loader ), '/' . $folder . '/' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	}
+
+	/**
+	 * Folder of the ACF local JSON files, relative to the theme.
+	 *
+	 * The ACF save point (`acf/settings/save_json`) when it lies inside the theme,
+	 * so generated field groups land where the project saves them; else acf-json/.
+	 *
+	 * @param string $directory Theme directory.
+	 */
+	public static function acf_json_folder( string $directory ): string {
+		$save = function_exists( 'acf_get_setting' ) ? acf_get_setting( 'save_json' ) : null;
+		if ( is_string( $save ) && '' !== $save ) {
+			$save  = rtrim( str_replace( '\\', '/', $save ), '/' );
+			$theme = rtrim( str_replace( '\\', '/', $directory ), '/' );
+			if ( str_starts_with( $save . '/', $theme . '/' ) && $save !== $theme ) {
+				return substr( $save, strlen( $theme ) + 1 );
+			}
+		}
+		return 'acf-json';
+	}
 }

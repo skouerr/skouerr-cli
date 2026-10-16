@@ -1,0 +1,86 @@
+{
+    "version": "2.0.0",
+    "history": {
+        "block.php": [
+            "20b2628ce8a09b31734a6e049da0754b2e4e8acf55ea7f0a388cfa4a828340a8",
+            "3f8cb4a5b93f59a4e563169b3e2b795e0e9e9381311afa0ed12cd1e818cafe9b",
+            "9bc624e28cd00d47123e22e5b5d65a0154708d3b264227c655b23f4647a95a33",
+            "b82553434d98399c3e2ec233160f318550acf6ee9fc99e6e03eca3f193c5d41d",
+            "bc560f002437c33e3ce9d0e0816b5efaeedd4667da8eb00bbb65e0268745b6cf"
+        ],
+        "class-skouerr-block.php": [
+            "b988cb3ad9b8409f4c8dcde196fb6d77ce3fea642fe997d92bf02614aad8dbc6",
+            "bc560f002437c33e3ce9d0e0816b5efaeedd4667da8eb00bbb65e0268745b6cf"
+        ],
+        "class-skouerr-loader.php": [
+            "5c65d165a1b3bba5ce62d93d5c5edabcd1869af137a8a222893222233d6ccec9",
+            "c4d169d8185c20f08c0f2a33a431c4052c8d342fd3d73b6cd225cfb836e9a98c"
+        ],
+        "class-skouerr-mail.php": [
+            "750b4200d413c40999f5017151c773661251381838ac9eea388e5cba57803e47",
+            "82fc2d6694c8b3bdcb75422253c54888d75c0285a517ac1c2f65bb0645f8a2bc"
+        ],
+        "class-skouerr-palette.php": [
+            "fdc55d60ee97f0660bd970dc17a9312a3ab406753f27928a9c4cb6bef4728ffe"
+        ],
+        "dev.php": [
+            "09a0e1f81f51b80849cfa315095cf1eacdf64f1e2b3d48d6872690a249b4630f",
+            "1a66f9c3025b7328673d932e1a4092a59a0d14336ff586415cd4b9ab37ca6be0",
+            "a2d79e3da047256dd737b60a9c7e981c7ef9b5d143a29a7246df6aae90f805d3",
+            "bc720dae62e496476e4eb6d648fa267139631451b830d384a68af3d5341903eb"
+        ],
+        "loader.php": [
+            "42644086348f72b3fca60ce4c92eb2d684089e55f08a1e73e33f763fdfb25e97",
+            "463419a200c1100cf20f7322346c06149b308b648eeaf04bd6f1319dc1d3be9f",
+            "72921fa09060f129947832ca7d6d3291ecbe7e11f43623a6cf021544bca2bdf8",
+            "ae0615c838899e632361eae3eaf4d10c20159eec235572d5ea2a5e4aff56772a"
+        ],
+        "mail.php": [
+            "82fc2d6694c8b3bdcb75422253c54888d75c0285a517ac1c2f65bb0645f8a2bc",
+            "e4c762aaafc97356e509034dea05cf32ccffc275ccd65ef747fac287069c9cd8"
+        ],
+        "palette.php": [
+            "d672d0e603dbe7be03c10eb23fb3a5eafb37bb005f16a579067c7f41472159ee",
+            "fdc55d60ee97f0660bd970dc17a9312a3ab406753f27928a9c4cb6bef4728ffe"
+        ],
+        "render.php": [
+            "4ad94081276f9ec035ffea5ec4d6993f8493af5386fc234e11c57671fe512a6c"
+        ],
+        "setup.php": [
+            "3d165b02ce81fcef3d41eebe2c14813b63376d71faae57157182c9123999c61a",
+            "590a5247c6349cf08addf370f4d74aad378618af77d99cbe5c59bd45123c8c65",
+            "bfb1387e06b456c586a9d3e286366e3a43537c25b533c7761f894f8c98c20d44"
+        ]
+    },
+    "removed": {
+        "class-skouerr-mail.php": {
+            "symbols": [
+                "Skouerr_Mail"
+            ]
+        },
+        "class-skouerr-palette.php": {
+            "symbols": [
+                "Skouerr_Palette"
+            ]
+        },
+        "mail.php": {
+            "symbols": [
+                "Skouerr_Mail"
+            ]
+        },
+        "palette.php": {
+            "symbols": [
+                "Skouerr_Palette"
+            ]
+        },
+        "render.php": {
+            "symbols": [
+                "skouerr_render"
+            ]
+        }
+    },
+    "renamed": {
+        "block.php": "class-skouerr-block.php",
+        "loader.php": "class-skouerr-loader.php"
+    }
+}

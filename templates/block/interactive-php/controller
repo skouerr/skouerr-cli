@@ -14,6 +14,11 @@ $skouerr_block = new Skouerr_Block(__DIR__);
  * $skouerr_block->set_data('key', 'value');
  */
 
+/**
+ * Interactivity API context: the block attributes and the open state.
+ */
+$skouerr_block->set_data('context', wp_interactivity_data_wp_context(array_merge(array('open' => false), $attributes ?? array())));
+
 
 /**
  * Render Skouerr Block
